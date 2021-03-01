@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SportsLink</string>
+    <string-array name="Tiempo">
+        <item>1 Minuto</item>
+        <item>2 Minutos</item>
+        <item>3 Minutos</item>
+
+    </string-array>
 </resources>
