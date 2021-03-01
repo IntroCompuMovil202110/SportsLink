@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/blackBackground"
+  tools:context=".ActividadesSegunPreferenciasActivity">
+
+  <SearchView
+    android:id="@+id/actividadesSegunPreferenciasSearchView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:background="@color/white" />
+
+  <Button
+    android:id="@+id/seleccionarActividadesButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/actividadesSegunPreferenciasSearchView"
+    android:layout_marginStart="20dp"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:text="Seleccionar actividades"
+    android:textAllCaps="false"
+    android:textColor="@color/blackBackground" />
+
+  <Button
+    android:id="@+id/crearButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/actividadesSegunPreferenciasSearchView"
+    android:layout_alignParentEnd="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_toEndOf="@id/seleccionarActividadesButton"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:text="Crear"
+    android:textAllCaps="false"
+    android:textColor="@color/blackBackground" />
+
+  <TextView
+    android:id="@+id/actividadesTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/seleccionarActividadesButton"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:text="Actividades segun tus preferencias"
+    android:textColor="@color/grayButtonBackground"
+    android:textSize="20sp"
+    android:textStyle="bold" />
+
+  <TextView
+    android:id="@+id/otrasActividadesTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/actividadesTextView"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="280dp"
+    android:text="Otras actividades"
+    android:textColor="@color/grayButtonBackground"
+    android:textSize="20sp"
+    android:textStyle="bold" />
+
+  <Button
+    android:id="@+id/encuentroButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginBottom="5dp"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:text="Encuentro"
+    android:textAllCaps="false"
+    android:textColor="@color/blackBackground" />
+
+  <Button
+    android:id="@+id/perfilButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginBottom="5dp"
+    android:layout_toEndOf="@id/encuentroButton"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:text="Perfil"
+    android:textAllCaps="false"
+    android:textColor="@color/blackBackground" />
+
+  <Button
+    android:id="@+id/paisajesButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="5dp"
+    android:layout_toEndOf="@id/perfilButton"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:text="Paisajes"
+    android:textAllCaps="false"
+    android:textColor="@color/blackBackground" />
+</RelativeLayout>

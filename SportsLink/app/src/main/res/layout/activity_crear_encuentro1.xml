@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/blackBackground"
+  tools:context=".CrearEncuentroActivity1">
+
+  <TextView
+    android:id="@+id/crearEncuentroTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:text="Crear encuentro"
+    android:textColor="@color/grayButtonBackground"
+    android:textSize="30sp"
+    android:textStyle="bold" />
+
+  <TextView
+    android:id="@+id/lugarDeEncuentroTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/crearEncuentroTextView"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp"
+    android:text="Lugar de encuentro"
+    android:textColor="@color/grayButtonBackground"
+    android:textSize="20sp" />
+
+  <TextView
+    android:id="@+id/direccionTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/lugarDeEncuentroTextView"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="300dp"
+    android:text="Dirección"
+    android:textColor="@color/grayButtonBackground"
+    android:textSize="20sp" />
+
+  <EditText
+    android:id="@+id/direccionEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/direccionTextView"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:enabled="false"
+    android:importantForAutofill="no"
+    android:inputType="none"
+    android:textColor="@color/grayButtonBackground" />
+
+  <TextView
+    android:id="@+id/ciudadTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/direccionEditText"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:text="Ciudad"
+    android:textColor="@color/grayButtonBackground"
+    android:textSize="20sp" />
+
+  <Spinner
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/direccionEditText"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_toEndOf="@id/ciudadTextView" />
+
+  <Button
+    android:id="@+id/atrasCrearEncuentroButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginBottom="5dp"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:text="Atras"
+    android:textAllCaps="false"
+    android:textColor="@color/blackBackground" />
+
+  <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="5dp"
+    android:layout_toEndOf="@id/atrasCrearEncuentroButton"
+    android:backgroundTint="@color/grayButtonBackground"
+    android:text="Continuar"
+    android:textAllCaps="false"
+    android:textColor="@color/blackBackground" />
+</RelativeLayout>

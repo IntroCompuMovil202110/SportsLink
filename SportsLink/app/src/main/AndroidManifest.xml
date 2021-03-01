@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".Push"></activity>
+        <activity android:name=".CrearEncuentroActivity2"></activity>
+        <activity android:name=".CrearEncuentroActivity1" />
+        <activity android:name=".ActividadesSegunPreferenciasActivity" />
+        <activity android:name=".BuscarEncuentroActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".Push" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
