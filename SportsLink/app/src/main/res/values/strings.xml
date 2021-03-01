@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">SportsLink</string>
+    <string name="galeria">Galeria</string>
+    <string name="no_sabes_donde_ir">¿No sabes donde ir?</string>
     <string-array name="Tiempo">
         <item>1 Minuto</item>
         <item>2 Minutos</item>
