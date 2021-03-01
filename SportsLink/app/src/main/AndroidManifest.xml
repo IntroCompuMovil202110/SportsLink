@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
+        <activity android:name=".Galeria"></activity>
+        <activity android:name=".Perfil_Vista" />
+        <activity android:name=".Perfil_Propio" />
+        <activity android:name=".Recorrido_Automatico" />
+        <activity android:name=".Recorrido_Manual" />
+        <activity android:name=".Encuentro_Usuarios" />
+        <activity android:name=".Encuentro_Creador" />
+        <activity android:name=".Push" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
