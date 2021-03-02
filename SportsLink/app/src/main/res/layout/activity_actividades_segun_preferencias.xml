@@ -50,6 +50,15 @@
     android:textSize="20sp"
     android:textStyle="bold" />
 
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_below="@id/actividadesTextView"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="20dp"
+    android:src="@drawable/encuentrofake" />
+
   <TextView
     android:id="@+id/otrasActividadesTextView"
     android:layout_width="wrap_content"
@@ -61,6 +70,15 @@
     android:textColor="@color/grayButtonBackground"
     android:textSize="20sp"
     android:textStyle="bold" />
+  <ImageView
+    android:layout_below="@id/otrasActividadesTextView"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="20dp"
+    android:scaleType="centerCrop"
+    android:src="@drawable/encuentrofake"
+    android:layout_marginEnd="20dp"/>
 
   <Button
     android:id="@+id/encuentroButton"
