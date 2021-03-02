@@ -55,6 +55,8 @@
         android:backgroundTint="#FFFFFF"
         android:entries="@array/Tiempo"
         android:foregroundTint="#FFFFFF"
+        android:theme="@style/mySpinnerItemStyle"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"
