@@ -7,21 +7,6 @@
     android:background="#001A22"
     tools:context=".Encuentro_Creador">
 
-    <TextView
-        android:id="@+id/textViewParticipantes3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="Participantes 2"
-        android:textColor="#00BCD4"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLugarEncuentro"
-        app:layout_constraintVertical_bias="0.831" />
-
     <Button
         android:id="@+id/buttonAñadir2"
         android:layout_width="96dp"
@@ -34,21 +19,6 @@
         app:layout_constraintHorizontal_bias="0.787"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion" />
-
-    <TextView
-        android:id="@+id/textViewParticipantes2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="Participantes 1"
-        android:textColor="#00BCD4"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLugarEncuentro"
-        app:layout_constraintVertical_bias="0.745" />
 
     <TextView
         android:id="@+id/textViewParticipantes"
@@ -118,6 +88,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.206"
+        app:srcCompat="@drawable/google_maps_street_view_cubre_16_millones_de_kil_metros_de"
         tools:srcCompat="@drawable/google_maps_street_view_cubre_16_millones_de_kil_metros_de" />
 
     <TextView
@@ -173,10 +144,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewLugarEncuentro"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.145" />
 
     <Button
         android:id="@+id/buttonModificar"
@@ -190,7 +161,7 @@
         app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toEndOf="@+id/textViewRecorrido"
         app:layout_constraintTop_toBottomOf="@+id/imageViewLugarEncuentro"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -202,6 +173,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewLugarEncuentro"
         app:layout_constraintVertical_bias="0.297"
+        app:srcCompat="@drawable/google_maps_street_view_cubre_16_millones_de_kil_metros_de"
         tools:srcCompat="@drawable/google_maps_street_view_cubre_16_millones_de_kil_metros_de" />
 
     <TextView
@@ -246,5 +218,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion"
         app:layout_constraintVertical_bias="0.216" />
+
+    <Button
+        android:id="@+id/buttonParticipante1"
+        android:layout_width="160dp"
+        android:layout_height="37dp"
+        android:backgroundTint="#009688"
+        android:text="Participante 1"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion"
+        app:layout_constraintVertical_bias="0.223" />
+
+    <Button
+        android:id="@+id/buttonParticipante2"
+        android:layout_width="160dp"
+        android:layout_height="37dp"
+        android:backgroundTint="#009688"
+        android:text="Participante 2"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion"
+        app:layout_constraintVertical_bias="0.492" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
