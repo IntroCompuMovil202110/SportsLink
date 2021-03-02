@@ -3,6 +3,7 @@ package com.movil.sportslink;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ public class ActividadesSegunPreferenciasActivity extends AppCompatActivity {
         Button encuentroButton = findViewById(R.id.encuentroButton);
         Button perfilButton = findViewById(R.id.perfilButton);
         Button crearEncuentro = findViewById(R.id.crearButton);
+        ImageButton verActividades = findViewById(R.id.ButtonVerActividad);
         Button seleccionarActividadesButton = findViewById(R.id.seleccionarActividadesButton);
         paisajesButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), Galeria.class);
@@ -35,6 +37,10 @@ public class ActividadesSegunPreferenciasActivity extends AppCompatActivity {
         });
         seleccionarActividadesButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), BuscarEncuentroActivity.class);
+            startActivity(intent);
+        });
+        verActividades.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), Encuentro_Usuarios.class);
             startActivity(intent);
         });
     }
