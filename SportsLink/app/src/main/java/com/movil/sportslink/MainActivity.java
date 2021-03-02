@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         btGaleria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Perfil_Propio.class );
+                Intent intent = new Intent(v.getContext(), EnrutamientoEncuentro.class );
                 startActivity(intent);
             }
         });

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".Galeria"></activity>
+        <activity android:name=".GenerarMultimedia"></activity>
+        <activity android:name=".EnrutamientoEncuentro" />
+        <activity android:name=".Galeria" />
         <activity android:name=".Perfil_Vista" />
         <activity android:name=".Perfil_Propio" />
         <activity android:name=".Recorrido_Automatico" />
