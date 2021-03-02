@@ -28,6 +28,16 @@
     android:textColor="@color/grayButtonBackground"
     android:textSize="20sp" />
 
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_below="@id/lugarDeEncuentroTextView"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="20dp"
+    android:scaleType="fitXY"
+    android:src="@drawable/mapafake" />
+
   <TextView
     android:id="@+id/direccionTextView"
     android:layout_width="wrap_content"
@@ -84,6 +94,7 @@
     android:textColor="@color/blackBackground" />
 
   <Button
+    android:id="@+id/continuarButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentEnd="true"

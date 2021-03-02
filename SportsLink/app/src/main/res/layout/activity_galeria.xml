@@ -74,8 +74,7 @@
             android:id="@+id/btnProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
+            android:layout_margin="5dp"
             android:backgroundTint="#009688"
             android:text="Perfil"
             android:textAllCaps="false"
@@ -86,8 +85,7 @@
             android:id="@+id/bttnShareLandscape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="2"
+            android:layout_margin="5dp"
             android:backgroundTint="#009688"
             android:text="Compartir mis lugares"
             android:textAllCaps="false"
@@ -95,16 +93,15 @@
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/btnMeets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            android:backgroundTint="#009688"
-            android:text="Encuentros"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="12sp" />
+          android:id="@+id/btnMeets"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:backgroundTint="#009688"
+          android:text="Encuentros"
+          android:textAllCaps="false"
+          android:textColor="#000000"
+          android:textSize="12sp" />
 
     </LinearLayout>
 
