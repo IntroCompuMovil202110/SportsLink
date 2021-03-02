@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blackBackground">#FF102027</color>
+    <color name="grayButtonBackground">#00D9C5</color>
+    <color name="redText">#A64852</color>
+    <color name="signUpColor">#B56546</color>
 </resources>
