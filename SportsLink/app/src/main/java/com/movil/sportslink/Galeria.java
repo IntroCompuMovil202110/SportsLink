@@ -40,12 +40,17 @@ public class Galeria extends AppCompatActivity {
         gridPaisajes.setAdapter(adapter);
         Button bttnShareLandscape = findViewById(R.id.bttnShareLandscape);
         Button btnProfile = findViewById(R.id.btnProfile);
+        Button btnMeets = findViewById(R.id.btnMeets);
         bttnShareLandscape.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), GenerarMultimedia.class);
             startActivity(intent);
         });
         btnProfile.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), Perfil_Propio.class);
+            startActivity(intent);
+        });
+        btnMeets.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), Encuentros.class);
             startActivity(intent);
         });
     }

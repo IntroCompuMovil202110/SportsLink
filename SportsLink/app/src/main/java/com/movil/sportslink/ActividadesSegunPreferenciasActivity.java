@@ -22,8 +22,8 @@ public class ActividadesSegunPreferenciasActivity extends AppCompatActivity {
             startActivity(intent);
         });
         encuentroButton.setOnClickListener(v -> {
-            /*Intent intent = new Intent(getBaseContext(), );
-            startActivity(intent);*/
+            Intent intent = new Intent(getBaseContext(), Encuentros.class);
+            startActivity(intent);
         });
         perfilButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), Perfil_Propio.class);
