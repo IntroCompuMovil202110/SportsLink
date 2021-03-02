@@ -11,6 +11,7 @@
     <string name="btnUploadPicture">Subir Foto</string>
     <string name="btnTakePicture">Tomar Foto</string>
     <string name="hintAditionalTakePicture">Añade un título adicional</string>
+    <string name="preferencesTitle">Preferencias</string>
     <string-array name="Tiempo">
         <item>1 Minuto</item>
         <item>2 Minutos</item>
