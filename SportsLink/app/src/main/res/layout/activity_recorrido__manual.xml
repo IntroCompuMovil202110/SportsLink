@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="#001A22"
-    tools:context=".Recorrido_Manual">
+    tools:context=".controlador.Recorrido_Manual">
 
     <TextView
         android:id="@+id/textViewGenerar"

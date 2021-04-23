@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#001A22"
     android:backgroundTint="#001A22"
-    tools:context=".Encuentro_Usuarios">
+    tools:context=".controlador.Encuentro_Usuarios">
 
     <Button
         android:id="@+id/buttonParticipante4"

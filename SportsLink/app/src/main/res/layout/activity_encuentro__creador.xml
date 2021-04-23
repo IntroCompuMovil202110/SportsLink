@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#001A22"
-    tools:context=".Encuentro_Creador">
+    tools:context=".controlador.Encuentro_Creador">
 
     <Button
         android:id="@+id/buttonAñadir2"

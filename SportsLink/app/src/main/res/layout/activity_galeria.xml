@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#001A22"
-    tools:context=".Galeria">
+    tools:context=".controlador.Galeria">
 
     <View
         android:id="@+id/divTiltleGaleria"

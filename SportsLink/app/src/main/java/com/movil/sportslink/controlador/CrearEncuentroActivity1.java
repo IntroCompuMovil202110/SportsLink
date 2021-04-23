@@ -1,10 +1,12 @@
-package com.movil.sportslink;
+package com.movil.sportslink.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.movil.sportslink.R;
 
 public class CrearEncuentroActivity1 extends AppCompatActivity {
 

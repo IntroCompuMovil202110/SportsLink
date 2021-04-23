@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="#001A22"
-    tools:context=".Perfil_Vista">
+    tools:context=".controlador.Perfil_Vista">
 
     <TextView
         android:id="@+id/textViewAcrividades2"

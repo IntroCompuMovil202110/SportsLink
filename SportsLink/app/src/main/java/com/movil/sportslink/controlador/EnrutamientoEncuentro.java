@@ -1,8 +1,10 @@
-package com.movil.sportslink;
+package com.movil.sportslink.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.movil.sportslink.R;
 
 public class EnrutamientoEncuentro extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.movil.sportslink;
+package com.movil.sportslink.controlador;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.movil.sportslink.R;
 import com.movil.sportslink.modelo.Multimedia;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
   android:layout_height="match_parent"
   android:background="@color/blackBackground"
   android:orientation="vertical"
-  tools:context=".BuscarEncuentroActivity">
+  tools:context=".controlador.BuscarEncuentroActivity">
 
   <TextView
     android:layout_width="wrap_content"

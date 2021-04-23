@@ -1,4 +1,4 @@
-package com.movil.sportslink;
+package com.movil.sportslink.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.GridView;
 
+import com.movil.sportslink.R;
 import com.movil.sportslink.modelo.Multimedia;
 
 import java.util.ArrayList;
