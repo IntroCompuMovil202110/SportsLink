@@ -22,18 +22,19 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginTop="20dp"
-    android:text="Número celular"
+    android:text="Correo"
     android:textColor="@color/redText"
     android:textSize="20sp" />
 
   <EditText
+      android:id="@+id/email"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
     android:backgroundTint="@color/grayButtonBackground"
     android:importantForAutofill="no"
-    android:inputType="phone"
+
     android:textColor="@color/grayButtonBackground" />
 
   <TextView
@@ -46,6 +47,7 @@
     android:textSize="20sp" />
 
   <EditText
+      android:id="@+id/password"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
