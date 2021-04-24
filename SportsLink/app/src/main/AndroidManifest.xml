@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".controlador.Encuentros"></activity>
+        <activity android:name=".controlador.MainActivity"></activity>
+        <activity android:name=".controlador.CrearEncuentro3Activity" />
+        <activity android:name=".controlador.Encuentros" />
         <activity android:name=".controlador.PreferenciasUsuario" />
         <activity android:name=".controlador.GenerarMultimedia" />
         <activity android:name=".controlador.EnrutamientoEncuentro" />
         <activity android:name=".controlador.Galeria" />
-        <activity android:name=".controlador.CrearEncuentroActivity2" />
-        <activity android:name=".controlador.CrearEncuentroActivity1" />
-        <activity android:name=".controlador.ActividadesSegunPreferenciasActivity" />
+        <activity android:name=".controlador.CrearEncuentro2Activity" />
+        <activity android:name=".controlador.CrearEncuentro1Activity" />
         <activity android:name=".controlador.BuscarEncuentroActivity" />
         <activity android:name=".controlador.SignUpActivity" />
         <activity android:name=".controlador.LoginActivity">
@@ -28,7 +29,6 @@
         </activity>
         <activity android:name=".controlador.Push" />
         <activity android:name=".controlador.Perfil_Vista" />
-        <activity android:name=".controlador.Perfil_Propio" />
         <activity android:name=".controlador.Recorrido_Automatico" />
         <activity android:name=".controlador.Recorrido_Manual" />
         <activity android:name=".controlador.Encuentro_Usuarios" />

@@ -16,7 +16,7 @@ public class BuscarEncuentroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_buscar_encuentro);
         Button buscarEncuentro = findViewById(R.id.buscarEncuentroButton);
         buscarEncuentro.setOnClickListener(v -> {
-            Intent intent = new Intent(getBaseContext(), ActividadesSegunPreferenciasActivity.class);
+            Intent intent = new Intent(getBaseContext(), ActividadesSegunPreferenciasFragment.class);
             startActivity(intent);
         });
     }

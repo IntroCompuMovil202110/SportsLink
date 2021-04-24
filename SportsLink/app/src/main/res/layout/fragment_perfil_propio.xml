@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:backgroundTint="#001A22"
-    tools:context=".controlador.Perfil_Propio">
+    android:backgroundTint="#001A22">
 
     <TextView
         android:id="@+id/textViewDescripcion3"

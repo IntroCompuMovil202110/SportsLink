@@ -1,167 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/blackBackground"
-  tools:context=".controlador.CrearEncuentroActivity2">
-
-  <TextView
-    android:id="@+id/crearEncuentroTextView2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="10dp"
-    android:text="Crear encuentro"
-    android:textColor="@color/grayButtonBackground"
-    android:textSize="30sp"
-    android:textStyle="bold" />
-
-  <TextView
-    android:id="@+id/nombreEncuentroTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/crearEncuentroTextView2"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
-    android:text="Nombre"
-    android:textColor="@color/grayButtonBackground"
-    android:textSize="20sp" />
-
-  <EditText
-    android:id="@+id/nombreEncuentroEditText"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/nombreEncuentroTextView"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:backgroundTint="@color/grayButtonBackground"
-    android:importantForAutofill="no"
-    android:inputType="text"
-    android:textColor="@color/grayButtonBackground" />
+    android:layout_height="match_parent"
+    android:background="@color/blackBackground"
+    tools:context=".controlador.CrearEncuentro2Activity">
 
   <TextView
-    android:id="@+id/actividadEncuentroTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/nombreEncuentroEditText"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="10dp"
-    android:text="Actividad"
-    android:textColor="@color/grayButtonBackground"
-    android:textSize="20sp" />
+      android:id="@+id/crearEncuentro2textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="10dp"
+      android:text="Crear encuentro parte 2"
+      android:textColor="@color/white"
+      android:textSize="30sp"
+      android:textStyle="bold" />
+
+  <TextView
+      android:id="@+id/crearEncuentro2fechaTextViewTitulo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/crearEncuentro2textView"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="20dp"
+      android:text="Fecha"
+      android:textColor="@color/grayButtonBackground"
+      android:textSize="20sp" />
+
+  <TextView
+      android:id="@+id/crearEncuentro2fechaTextView"
+      android:layout_width="300dp"
+      android:layout_height="30dp"
+      android:layout_below="@id/crearEncuentro2fechaTextViewTitulo"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="20dp"
+      android:background="@color/white"
+      android:textColor="@color/black"
+      android:textSize="20sp" />
+
+  <ImageButton
+      android:id="@+id/crearEncuentro2fechaImageButton"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_below="@id/crearEncuentro2fechaTextViewTitulo"
+      android:layout_marginStart="5dp"
+      android:layout_marginTop="20dp"
+      android:layout_toRightOf="@id/crearEncuentro2fechaTextView"
+      android:background="@color/white"
+      android:scaleType="fitCenter"
+      android:src="@drawable/calendar_icon" />
+
+  <TextView
+      android:id="@+id/crearEncuentro2horaTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/crearEncuentro2fechaImageButton"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="50dp"
+      android:text="Hora"
+      android:textColor="@color/grayButtonBackground"
+      android:textSize="20sp" />
+
+  <TimePicker
+      android:id="@+id/crearEncuentro2horaTimePicker"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/crearEncuentro2horaTextView"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="20dp"
+      android:background="@color/white"
+      android:timePickerMode="spinner" />
+
+  <TextView
+      android:id="@+id/crearEncuentro2capacidadTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/crearEncuentro2horaTimePicker"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="50dp"
+      android:text="Capacidad"
+      android:textColor="@color/grayButtonBackground"
+      android:textSize="20sp" />
 
   <Spinner
-    android:id="@+id/actividadEncuentroSpinner"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/actividadEncuentroTextView"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp" />
-
-  <TextView
-    android:id="@+id/fechaEncuentroTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/actividadEncuentroSpinner"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="10dp"
-    android:text="Fecha"
-    android:textColor="@color/grayButtonBackground"
-    android:textSize="20sp" />
-
-  <EditText
-    android:id="@+id/fechaEncuentroEditText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/fechaEncuentroTextView"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:backgroundTint="@color/grayButtonBackground"
-    android:enabled="false"
-    android:importantForAutofill="no"
-    android:inputType="none"
-    android:textColor="@color/grayButtonBackground" />
-
-  <TextView
-    android:id="@+id/horaEncuentroTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/fechaEncuentroEditText"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="10dp"
-    android:text="Hora"
-    android:textColor="@color/grayButtonBackground"
-    android:textSize="20sp" />
+      android:id="@+id/crearEncuentro2capacidadSpinner"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/crearEncuentro2capacidadTextView"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginEnd="20dp"
+      android:background="@color/white" />
 
   <Button
-    android:id="@+id/seleccionarHoraButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/horaEncuentroTextView"
-    android:layout_marginStart="20dp"
-    android:backgroundTint="@color/grayButtonBackground"
-    android:minWidth="200dp"
-    android:text="Seleccionar hora"
-    android:textAllCaps="false"
-    android:textColor="@color/blackBackground" />
-
-  <TextView
-    android:id="@+id/capacidadEncuentroTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/seleccionarHoraButton"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="10dp"
-    android:text="Capacidad"
-    android:textColor="@color/grayButtonBackground"
-    android:textSize="20sp" />
-
-  <Spinner
-    android:id="@+id/capacidadEncuentroSpinner"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/capacidadEncuentroTextView"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp" />
-
-  <EditText
-    android:id="@+id/descripcionEncuentroEditText"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_below="@id/capacidadEncuentroSpinner"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="20dp"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
-    android:hint="Descripción"
-    android:importantForAutofill="no"
-    android:inputType="textMultiLine"
-    android:textColor="@color/black"
-    android:textColorHint="@color/black" />
+      android:id="@+id/crearEncuentro2atrasButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="20dp"
+      android:layout_marginEnd="20dp"
+      android:layout_marginBottom="5dp"
+      android:background="@color/transparent"
+      android:text="Atras"
+      android:textAllCaps="false"
+      android:textColor="@color/grayButtonBackground" />
 
   <Button
-    android:id="@+id/crearEncuentroButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/descripcionEncuentroEditText"
-    android:layout_centerHorizontal="true"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="10dp"
-    android:backgroundTint="@color/grayButtonBackground"
-    android:minWidth="200dp"
-    android:text="Crear encuentro"
-    android:textAllCaps="false"
-    android:textColor="@color/blackBackground" />
+      android:id="@+id/crearEncuentro2siguienteButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginStart="20dp"
+      android:layout_marginBottom="5dp"
+      android:backgroundTint="@color/grayButtonBackground"
+      android:text="Siguiente"
+      android:textAllCaps="false"
+      android:textColor="@color/black" />
 
-  <TextView
-    android:id="@+id/atrasCrearEncuentroButton2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/crearEncuentroButton"
-    android:layout_centerHorizontal="true"
-    android:text="Atras"
-    android:textColor="@color/grayButtonBackground"
-    android:textSize="20sp" />
+  <Button
+      android:id="@+id/crearEncuentro2cancelarButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="20dp"
+      android:layout_marginEnd="20dp"
+      android:layout_marginBottom="5dp"
+      android:background="@color/transparent"
+      android:text="Cancelar"
+      android:textAllCaps="false"
+      android:textColor="@color/grayButtonBackground" />
 </RelativeLayout>

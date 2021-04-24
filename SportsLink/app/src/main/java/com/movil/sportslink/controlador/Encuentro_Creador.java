@@ -42,7 +42,7 @@ public class Encuentro_Creador extends AppCompatActivity {
             startActivity(intent);
         });
         editar.setOnClickListener(v -> {
-            Intent intent = new Intent(getBaseContext(), CrearEncuentroActivity1.class);
+            Intent intent = new Intent(getBaseContext(), CrearEncuentro1Activity.class);
             startActivity(intent);
         });
     }

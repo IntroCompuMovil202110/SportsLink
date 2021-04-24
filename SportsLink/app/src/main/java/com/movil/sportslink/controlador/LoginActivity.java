@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView signUpTextView = findViewById(R.id.signUpTextView);
         Button iniciarSesion = findViewById(R.id.iniciarSesionButton);
         iniciarSesion.setOnClickListener(v -> {
-            Intent intent = new Intent(getBaseContext(), ActividadesSegunPreferenciasActivity.class);
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
             startActivity(intent);
         });
         signUpTextView.setOnClickListener(v -> {

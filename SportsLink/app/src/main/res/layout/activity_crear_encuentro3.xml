@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackBackground"
+    tools:context=".controlador.CrearEncuentro3Activity">
+
+    <TextView
+        android:id="@+id/crearEncuentro3textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Crear encuentro parte 3"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/crearEncuentro3ciudadTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crearEncuentro3textView"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Ciudad"
+        android:textColor="@color/grayButtonBackground"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/crearEncuentro3ciudadSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crearEncuentro3ciudadTextView"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/crearEncuentro3lugarEncuentroTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crearEncuentro3ciudadSpinner"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="Lugar de encuentro"
+        android:textColor="@color/grayButtonBackground"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/crearEncuentro3lugarEncuentroEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crearEncuentro3lugarEncuentroTextView"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/white"
+        android:inputType="text"
+        android:textColor="@color/grayButtonBackground" />
+
+    <Button
+        android:id="@+id/crearEncuentro3seleccionarLugarEncuentroButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crearEncuentro3lugarEncuentroEditText"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/grayButtonBackground"
+        android:text="Seleccionar en mapa"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/crearEncuentro3crearRecorridoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/crearEncuentro3crearSinRecorridoButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/grayButtonBackground"
+        android:text="Crear recorrido"
+        android:layout_marginTop="50dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+    <Button
+        android:id="@+id/crearEncuentro3crearSinRecorridoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/grayButtonBackground"
+        android:text="Crear sin recorrido"
+        android:textAllCaps="false"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/crearEncuentro3atrasButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/transparent"
+        android:text="Atras"
+        android:textAllCaps="false"
+        android:textColor="@color/grayButtonBackground" />
+    <Button
+        android:id="@+id/crearEncuentro3cancelarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/transparent"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="@color/grayButtonBackground" />
+
+
+</RelativeLayout>
