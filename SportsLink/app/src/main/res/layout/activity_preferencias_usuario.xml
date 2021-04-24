@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/blackBackground"
+android:orientation="vertical"
+tools:context=".controlador.PreferenciasUsuario">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/preferencesTitle"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="60dp"
+    android:text="Selecciona\nal menos 1 actividad"
+    android:textColor="@color/white"
+    android:textSize="25sp" />
+
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:text="Montañismo"
+    android:textColor="@color/white"
+    android:textSize="20sp" />
+
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:text="Ciclismo de montaña"
+    android:textColor="@color/white"
+    android:textSize="20sp" />
+
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:text="Ciclismo"
+    android:textColor="@color/white"
+    android:textSize="20sp" />
+
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:text="Senderismo"
+    android:textColor="@color/white"
+    android:textSize="20sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/grayButtonBackground"
+        android:minWidth="150dp"
+        android:text="CONTINUAR"
+        android:textAllCaps="false"
+        android:textColor="@color/blackBackground" />
+</LinearLayout>

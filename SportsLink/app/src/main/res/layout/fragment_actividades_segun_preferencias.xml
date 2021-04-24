@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackBackground">
+
+    <SearchView
+        android:id="@+id/actividadesSegunPreferenciasSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/white" />
+
+    <Button
+        android:id="@+id/crearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actividadesSegunPreferenciasSearchView"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/grayButtonBackground"
+        android:text="Crear"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/actividadesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crearButton"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Actividades segun tus preferencias"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/ButtonVerActividad"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_below="@id/actividadesTextView"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/encuentrofake" />
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">SportsLink</string>
+    <string name="galeria">Galeria</string>
+    <string name="no_sabes_donde_ir">¿No sabes donde ir?</string>
+    <string name="expSrcpaisaje">ejemploSrcPaisaje</string>
+    <string name="expLocationGallery">Valle De Los Muertos</string>
+    <string name="expDateGallery">23-05-20</string>
+    <string name="TitleTakePicture">Añade una imagen al lugar de encuentro</string>
+    <string name="btnContinueTakePicture">Continuar</string>
+    <string name="todo">TODO</string>
+    <string name="btnUploadPicture">Subir Foto</string>
+    <string name="btnTakePicture">Tomar Foto</string>
+    <string name="hintAditionalTakePicture">Añade un título adicional</string>
+    <string name="preferencesTitle">Preferencias</string>
+    <string-array name="Tiempo">
+        <item>1 Minuto</item>
+        <item>2 Minutos</item>
+        <item>3 Minutos</item>
+
+    </string-array>
+    <string-array name="actividadesArray">
+        <item>Ciclismo</item>
+        <item>Ciclismo de montaña</item>
+        <item>Senderismo</item>
+        <item>Montañismo</item>
+    </string-array>
+    <string-array name="ciudadesArray">
+        <item>Bogotá D.C.</item>
+        <item>Cartagena</item>
+        <item>Cali</item>
+        <item>Barranquilla</item>
+        <item>Medellín</item>
+    </string-array>
+    <integer name="capacidadMaxNum">20</integer>
+</resources>
