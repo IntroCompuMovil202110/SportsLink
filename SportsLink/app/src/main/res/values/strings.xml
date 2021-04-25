@@ -18,4 +18,5 @@
         <item>3 Minutos</item>
 
     </string-array>
+    <string name="title_activity_routes">Map</string>
 </resources>

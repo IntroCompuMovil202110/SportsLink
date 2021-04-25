@@ -99,7 +99,8 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user){
         if(user != null){
             //Autenticado
-            startActivity(new Intent(this, ActividadesSegunPreferenciasActivity.class));
+            //startActivity(new Intent(this, ActividadesSegunPreferenciasActivity.class));
+            startActivity(new Intent(this, RoutesActivity.class));
         }else{
             email.setText("");
             password.setText("");
