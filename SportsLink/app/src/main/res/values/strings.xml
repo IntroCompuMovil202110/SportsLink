@@ -12,6 +12,7 @@
     <string name="btnTakePicture">Tomar Foto</string>
     <string name="hintAditionalTakePicture">Añade un título adicional</string>
     <string name="preferencesTitle">Preferencias</string>
+    <string name="hint_adress">adress...</string>
     <string-array name="Tiempo">
         <item>1 Minuto</item>
         <item>2 Minutos</item>
@@ -32,4 +33,5 @@
         <item>Medellín</item>
     </string-array>
     <integer name="capacidadMaxNum">20</integer>
+    <string name="title_activity_seleccionar__lugar">Map</string>
 </resources>

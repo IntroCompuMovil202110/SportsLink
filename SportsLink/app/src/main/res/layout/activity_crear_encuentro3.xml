@@ -61,7 +61,7 @@
         android:textColor="@color/grayButtonBackground" />
 
     <Button
-        android:id="@+id/crearEncuentro3seleccionarLugarEncuentroButton"
+        android:id="@+id/seleccionarLugarEncuentroButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/crearEncuentro3lugarEncuentroEditText"

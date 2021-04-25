@@ -3,6 +3,7 @@ package com.movil.sportslink.controlador;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -14,15 +15,18 @@ public class CrearEncuentro3Activity extends AppCompatActivity {
     private Spinner ciudadSpinner;
     private EditText lugarEncuentroEditText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_encuentro3);
+        //Button seleccionarLugarEncuentroButton =findViewById(R.id.seleccionarLugarEncuentroButton);
 
         ciudadSpinner = findViewById(R.id.crearEncuentro3ciudadSpinner);
         lugarEncuentroEditText = findViewById(R.id.crearEncuentro3lugarEncuentroEditText);
 
-        findViewById(R.id.crearEncuentro3seleccionarLugarEncuentroButton).setOnClickListener(v -> {
+        findViewById(R.id.seleccionarLugarEncuentroButton).setOnClickListener(v -> {
+            startActivity(new Intent(v.getContext(), seleccionar_LugarActivity.class));
             // TO DO
             // Logica del boton que selecciona el lugar de encuentro usando el mapa.
         });
