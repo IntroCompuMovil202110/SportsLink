@@ -37,9 +37,15 @@
         <activity android:name=".controlador.GenerarMultimedia" />
         <activity android:name=".controlador.EnrutamientoEncuentro" />
         <activity android:name=".controlador.Galeria" />
+<<<<<<< Updated upstream
         <activity android:name=".controlador.CrearEncuentroActivity2" />
         <activity android:name=".controlador.CrearEncuentroActivity1" />
         <activity android:name=".controlador.ActividadesSegunPreferenciasActivity" />
+=======
+        <activity android:name=".controlador.CrearEncuentro1Activity" />
+        <activity android:name=".controlador.CrearEncuentro2Activity" />
+
+>>>>>>> Stashed changes
         <activity android:name=".controlador.BuscarEncuentroActivity" />
         <activity android:name=".controlador.SignUpActivity" />
         <activity android:name=".controlador.LoginActivity">
