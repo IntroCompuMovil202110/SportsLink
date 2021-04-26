@@ -30,23 +30,22 @@
             android:value="@string/google_maps_key" />
 
         <activity
+<<<<<<< HEAD
             android:name=".controlador.seleccionar_LugarActivity"
             android:label="@string/title_activity_seleccionar__lugar"></activity>
-        
-        
-            <activity android:name=".controlador.RoutesActivity"
+        <activity android:name=".controlador.MainActivity" />
+        <activity android:name=".controlador.CrearEncuentro3Activity" />
+=======
+            android:name=".controlador.RoutesActivity"
             android:label="@string/title_activity_routes"></activity>
+>>>>>>> autenticacion
         <activity android:name=".controlador.Encuentros" />
         <activity android:name=".controlador.PreferenciasUsuario" />
         <activity android:name=".controlador.GenerarMultimedia" />
         <activity android:name=".controlador.EnrutamientoEncuentro" />
         <activity android:name=".controlador.Galeria" />
-        <activity android:name=".controlador.CrearEncuentro3Activity" />
         <activity android:name=".controlador.CrearEncuentro2Activity" />
         <activity android:name=".controlador.CrearEncuentro1Activity" />
-
-        <activity android:name=".controlador.ActividadesSegunPreferenciasActivity" />
-
         <activity android:name=".controlador.BuscarEncuentroActivity" />
         <activity android:name=".controlador.SignUpActivity" />
         <activity android:name=".controlador.LoginActivity">
