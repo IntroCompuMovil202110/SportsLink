@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
         if(user != null){
             //Autenticado
             System.out.println("Registrado");
-            startActivity(new Intent(this, ActividadesSegunPreferenciasActivity.class));
+            startActivity(new Intent(this, ActividadesSegunPreferenciasFragment.class));
         }else{
             email.setText("");
             password.setText("");

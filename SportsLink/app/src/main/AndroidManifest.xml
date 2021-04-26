@@ -31,12 +31,13 @@
 
 
         <activity android:name=".controlador.seleccionar_LugarActivity"
-            android:label="@string/title_activity_seleccionar__lugar">
+            android:label="@string/title_activity_seleccionar__lugar"/>
 
         <activity android:name=".controlador.CrearEncuentro3Activity" />
 
             <activity android:name=".controlador.RoutesActivity"
             android:label="@string/title_activity_routes"/>
+
 
         <activity android:name=".controlador.Encuentros" />
         <activity android:name=".controlador.PreferenciasUsuario" />

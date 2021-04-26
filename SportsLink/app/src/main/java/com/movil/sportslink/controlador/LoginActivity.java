@@ -32,16 +32,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         TextView signUpTextView = findViewById(R.id.signUpTextView);
-<<<<<<< HEAD
+
         Button iniciarSesion = findViewById(R.id.iniciarSesionButton);
         iniciarSesion.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             startActivity(intent);
         });
-=======
+
         Button login = findViewById(R.id.iniciarSesionButton);
 
->>>>>>> autenticacion
         signUpTextView.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), SignUpActivity.class);
             startActivity(intent);
