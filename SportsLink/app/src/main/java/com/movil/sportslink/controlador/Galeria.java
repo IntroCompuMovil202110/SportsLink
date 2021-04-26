@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.GridView;
 
 import com.movil.sportslink.R;
+import com.movil.sportslink.infrastructure.MultimediaAdapter;
 import com.movil.sportslink.modelo.Multimedia;
 
 import java.util.ArrayList;

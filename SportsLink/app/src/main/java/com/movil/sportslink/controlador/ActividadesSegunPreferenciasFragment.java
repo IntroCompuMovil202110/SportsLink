@@ -25,14 +25,14 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button crearEncuentro = view.findViewById(R.id.crearButton);
-        ImageButton verActividades = view.findViewById(R.id.ButtonVerActividad);
+        //ImageButton verActividades = view.findViewById(R.id.ButtonVerActividad);
         crearEncuentro.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), CrearEncuentro1Activity.class);
             startActivity(intent);
         });
-        verActividades.setOnClickListener(v -> {
+       /* verActividades.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), Encuentro_Usuarios.class);
             startActivity(intent);
-        });
+        });*/
     }
 }
