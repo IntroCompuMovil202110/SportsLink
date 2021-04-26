@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user != null){
             //Autenticado
             //startActivity(new Intent(this, ActividadesSegunPreferenciasActivity.class));
-            startActivity(new Intent(this, RoutasActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
         }else{
             email.setText("");
             password.setText("");
