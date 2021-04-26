@@ -61,6 +61,7 @@
         <activity android:name=".controlador.Recorrido_Manual" />
         <activity android:name=".controlador.Encuentro_Usuarios" />
         <activity android:name=".controlador.Encuentro_Creador" />
+        <activity android:name=".controlador.MainActivity" />
     </application>
 
 </manifest>
