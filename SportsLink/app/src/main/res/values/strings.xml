@@ -19,6 +19,7 @@
         <item>3 Minutos</item>
 
     </string-array>
+<<<<<<< HEAD
     <string-array name="actividadesArray">
         <item>Ciclismo</item>
         <item>Ciclismo de montaña</item>
@@ -34,4 +35,7 @@
     </string-array>
     <integer name="capacidadMaxNum">20</integer>
     <string name="title_activity_seleccionar__lugar">Map</string>
+=======
+    <string name="title_activity_routes">Map</string>
+>>>>>>> autenticacion
 </resources>

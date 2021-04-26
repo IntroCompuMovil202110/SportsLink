@@ -30,10 +30,15 @@
             android:value="@string/google_maps_key" />
 
         <activity
+<<<<<<< HEAD
             android:name=".controlador.seleccionar_LugarActivity"
             android:label="@string/title_activity_seleccionar__lugar"></activity>
         <activity android:name=".controlador.MainActivity" />
         <activity android:name=".controlador.CrearEncuentro3Activity" />
+=======
+            android:name=".controlador.RoutesActivity"
+            android:label="@string/title_activity_routes"></activity>
+>>>>>>> autenticacion
         <activity android:name=".controlador.Encuentros" />
         <activity android:name=".controlador.PreferenciasUsuario" />
         <activity android:name=".controlador.GenerarMultimedia" />

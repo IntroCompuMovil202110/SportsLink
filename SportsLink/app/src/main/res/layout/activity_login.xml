@@ -17,6 +17,7 @@
     android:textSize="20sp" />
 
   <TextView
+
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
@@ -31,18 +32,18 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginTop="50dp"
-    android:text="Número celular"
+    android:text="Correo"
     android:textColor="@color/white"
     android:textSize="20sp" />
 
   <EditText
+      android:id="@+id/email"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
     android:backgroundTint="@color/grayButtonBackground"
     android:importantForAutofill="no"
-    android:inputType="phone"
     android:textColor="@color/grayButtonBackground" />
 
   <TextView
@@ -55,6 +56,7 @@
     android:textSize="20sp" />
 
   <EditText
+      android:id="@+id/password"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
@@ -72,10 +74,12 @@
     android:layout_marginLeft="20dp"
     android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
+      android:background="@drawable/roundcorner"
     android:backgroundTint="@color/grayButtonBackground"
     android:text="Iniciar sesión"
     android:textAllCaps="false"
-    android:textColor="@color/blackBackground"
+
+
     android:textSize="20sp" />
 
   <LinearLayout
@@ -89,7 +93,7 @@
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Forgot Password?"
+      android:text="                      "
       android:textColor="@color/white"
       android:textSize="20sp"
       android:textStyle="bold" />
