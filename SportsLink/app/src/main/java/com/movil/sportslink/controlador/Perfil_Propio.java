@@ -15,6 +15,7 @@ public class Perfil_Propio extends AppCompatActivity {
 
     Button editarPerfil;
     Button cerrarSesion;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
