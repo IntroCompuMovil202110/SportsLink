@@ -11,8 +11,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -31,6 +40,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,15 +48,22 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.movil.sportslink.R;
 
+import java.io.IOException;
+import java.util.List;
+
 public class seleccionar_LugarActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final int SETTING_GPS  =15;
     private double latitud;
+    Geocoder geocoder;
+    EditText address;
     private double longitud;
     private static final int LOCATION_PERMISSION_ID =10;
     private static final String LOCATION_NAME = Manifest.permission.ACCESS_FINE_LOCATION;
     private Marker point;
+    private Marker search;
+    private ImageButton botonContinuar;
 
 
     private FusedLocationProviderClient locationClient;
@@ -59,35 +76,85 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccionar__lugar);
 
+
         locationRequest = createLocationRequest();
+        botonContinuar = findViewById(R.id.continuar);
+        address = findViewById(R.id.edtTxtViewMap);
+        geocoder = new Geocoder(this);
+
+
         locationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback =new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 Location location =locationResult.getLastLocation();
-                if(location != null){
+                if(location != null && latitud != location.getLatitude() && longitud != location.getLongitude()){
                     if(point != null){
                         point.remove();
                     }
+
                     latitud = location.getLatitude();
                     longitud = location.getLongitude();
-                    LatLng loc =new LatLng(latitud,longitud);
-                     point = mMap.addMarker(new MarkerOptions().position(loc).title("Usted está Aqui"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-                    mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+                    LatLng loc =new LatLng(location.getLatitude(),location.getLongitude());
+                    try {
+                        List<Address> addressesList = geocoder.getFromLocation(latitud, longitud, 2);
+                        point = mMap.addMarker(new MarkerOptions().position(loc).title(addressesList.get(0).getAddressLine(0)));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
         };
 
         requestPermission(this, LOCATION_NAME, "NEEDED", LOCATION_PERMISSION_ID);
         initView();
+        address.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String addresString = address.getText().toString();
+                    if (!addresString.isEmpty()) {
+                        try {
+                            List<Address> addressesList = geocoder.getFromLocationName(addresString, 2);
+                            if (addressesList != null && !addressesList.isEmpty()) {
+                                Address result = addressesList.get(0);
+                                if (mMap != null) {
+
+                                    LatLng location = new LatLng(result.getLatitude(), result.getLongitude());
+                                    latitud = result.getLatitude();
+                                    longitud = result.getLongitude();
+                                    search = mMap.addMarker(new MarkerOptions().position(location).title(result.getAddressLine(0)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                                    if(point != null)
+                                    {
+                                        point.remove();
+                                    }
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                                    mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+                                    stopLocationUpdates();
+                                } else {
+                                    Toast.makeText(v.getContext(), "address not found", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                return false;
+            }
+        });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
+    //public void contactActivity(View view) {
+      //  startActivity( new Intent(view.getContext(), ContactActivity.class));
+    //}
     private void initView(){
 
         if(ContextCompat.checkSelfPermission(this, LOCATION_NAME)== PackageManager.PERMISSION_GRANTED) {
@@ -188,10 +255,44 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                //mMap.clear();
+                initView();
 
+                if(point!=null)
+                {
+                    point.remove();
+                }
+                latitud = latLng.latitude;
+                longitud = latLng.longitude;
+                point = mMap.addMarker(new MarkerOptions().position(latLng).title(geoCoderSearchLatLng(latLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                if(search != null)
+                {
+                    search.remove();
+                }
+                //mMap.addMarker(new MarkerOptions().position(BOGOTA).title("Marker in Bogota"));
+            }
+        });
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(latitud, longitud);
         point  = mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+    private String geoCoderSearchLatLng(LatLng position) {
+        String ret = "";
+
+        try {
+            List<Address> addresses = geocoder.getFromLocation(position.latitude, position.longitude,2);
+            if(addresses != null && !addresses.isEmpty())
+            {
+                Address addressResult = addresses.get(0);
+                ret = addressResult.getAddressLine(0);
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return ret;
     }
 }
