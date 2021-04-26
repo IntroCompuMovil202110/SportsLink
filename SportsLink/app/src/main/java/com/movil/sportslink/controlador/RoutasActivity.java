@@ -5,11 +5,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.here.sdk.core.GeoCoordinates;
 import com.here.sdk.mapviewlite.MapScene;
 import com.here.sdk.mapviewlite.MapStyle;
 import com.movil.sportslink.R;
 import com.movil.sportslink.infrastructure.PermissionsRequestor;
-import com.movil.sportslink.infrastructure.RoutingExample;
+import com.movil.sportslink.infrastructure.RoutingMachine;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,7 @@ public class RoutasActivity extends AppCompatActivity {
 
     private PermissionsRequestor permissionsRequestor;
     private MapViewLite mapView;
-    private RoutingExample routingExample;
+    private RoutingMachine routingMachine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class RoutasActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionsRequestor.onRequestPermissionsResult(requestCode, grantResults);
     }
 
@@ -64,7 +66,7 @@ public class RoutasActivity extends AppCompatActivity {
             @Override
             public void onLoadScene(@Nullable MapScene.ErrorCode errorCode) {
                 if (errorCode == null) {
-                    routingExample = new RoutingExample(RoutasActivity.this, mapView);
+                    routingMachine = new RoutingMachine(RoutasActivity.this, mapView);
                 } else {
                     Log.d(TAG, "onLoadScene failed: " + errorCode.toString());
                 }
@@ -73,15 +75,16 @@ public class RoutasActivity extends AppCompatActivity {
     }
 
     public void addRouteButtonClicked(View view) {
-        routingExample.addRoute();
+        routingMachine.addRoute(new GeoCoordinates(4.632713, -74.086050),
+                new GeoCoordinates(4.62718184324595, -74.06538050924736));
     }
 
     public void addWaypointsButtonClicked(View view) {
-        routingExample.addWaypoints();
+        routingMachine.addWaypoints();
     }
 
     public void clearMapButtonClicked(View view) {
-        routingExample.clearMap();
+        routingMachine.clearMap();
     }
 
     @Override

@@ -55,9 +55,9 @@ import java.util.List;
 import java.util.Locale;
 import com.movil.sportslink.R;
 
-public class RoutingExample {
+public class RoutingMachine {
 
-    private static final String TAG = RoutingExample.class.getName();
+    private static final String TAG = RoutingMachine.class.getName();
 
     private Context context;
     private MapViewLite mapView;
@@ -67,7 +67,7 @@ public class RoutingExample {
     private GeoCoordinates startGeoCoordinates;
     private GeoCoordinates destinationGeoCoordinates;
 
-    public RoutingExample(Context context, MapViewLite mapView) {
+    public RoutingMachine(Context context, MapViewLite mapView) {
         this.context = context;
         this.mapView = mapView;
         Camera camera = mapView.getCamera();
@@ -81,11 +81,11 @@ public class RoutingExample {
         }
     }
 
-    public void addRoute() {
+    public void addRoute(GeoCoordinates inicio, GeoCoordinates fin) {
         clearMap();
 
-        startGeoCoordinates = new GeoCoordinates(4.632713, -74.086050);
-        destinationGeoCoordinates = new GeoCoordinates(4.62718184324595, -74.06538050924736);
+        startGeoCoordinates = inicio;
+        destinationGeoCoordinates = fin;
         Waypoint startWaypoint = new Waypoint(startGeoCoordinates);
         Waypoint destinationWaypoint = new Waypoint(destinationGeoCoordinates);
 

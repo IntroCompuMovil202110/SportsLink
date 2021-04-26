@@ -64,11 +64,11 @@
 
   <TimePicker
       android:id="@+id/crearEncuentro2horaTimePicker"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@id/crearEncuentro2horaTextView"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="20dp"
+      android:layout_marginStart="0dp"
+      android:layout_marginTop="17dp"
       android:background="@color/white"
       android:timePickerMode="spinner" />
 
@@ -118,7 +118,8 @@
       android:backgroundTint="@color/grayButtonBackground"
       android:text="Siguiente"
       android:textAllCaps="false"
-      android:textColor="@color/black" />
+      android:textColor="@color/white"
+      android:background="@drawable/roundcorner" />
 
   <Button
       android:id="@+id/crearEncuentro2cancelarButton"

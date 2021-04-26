@@ -1,6 +1,7 @@
 package com.movil.sportslink.controlador;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +35,14 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
 
-        //signInTextView.setOnClickListener(v -> finish());
+        signInTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginRedirec();
+            }
+
+        });
+
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +55,10 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private void loginRedirec() {
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     protected  void signUp(String em,String pass){

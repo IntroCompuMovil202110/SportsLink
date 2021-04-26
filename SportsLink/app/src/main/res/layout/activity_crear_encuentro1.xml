@@ -79,7 +79,7 @@
       android:layout_marginStart="20dp"
       android:layout_marginTop="20dp"
       android:layout_marginEnd="20dp"
-      android:background="@color/white"
+      android:background="@drawable/white_roundcorner"
       android:backgroundTint="@color/white"
       android:hint="Descripción"
       android:importantForAutofill="no"
@@ -95,10 +95,12 @@
       android:layout_centerHorizontal="true"
       android:layout_marginStart="20dp"
       android:layout_marginBottom="5dp"
+      android:textColor="@color/white"
+      android:background="@drawable/roundcorner"
       android:backgroundTint="@color/grayButtonBackground"
       android:text="Siguiente"
       android:textAllCaps="false"
-      android:textColor="@color/black" />
+       />
 
   <Button
       android:id="@+id/crearEncuentro1cancelarButton"
