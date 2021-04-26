@@ -37,5 +37,5 @@
     <string name="title_activity_seleccionar__lugar">Map</string>
 
     <string name="title_activity_routes">Map</string>
-
+    <string name="mapbox_access_token">pk.eyJ1Ijoia29zbGluIiwiYSI6ImNrbnh6d202ejBoZmwydnI5cHBtdGN6cjkifQ.bDEbF3JV3ugV_pMVhda3ZQ</string>
 </resources>
