@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.icu.util.BuddhistCalendar;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -47,8 +48,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.movil.sportslink.R;
+import com.movil.sportslink.infrastructure.PersistidorEncuentro;
+import com.movil.sportslink.modelo.Actividad;
+import com.movil.sportslink.modelo.Encuentro;
+import com.movil.sportslink.modelo.LugarEncuentro;
+import com.movil.sportslink.modelo.Recorrido;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class seleccionar_LugarActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -59,11 +66,16 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
     Geocoder geocoder;
     EditText address;
     private double longitud;
+    private LatLng inicioL;
+    private LatLng finalL;
     private static final int LOCATION_PERMISSION_ID =10;
     private static final String LOCATION_NAME = Manifest.permission.ACCESS_FINE_LOCATION;
     private Marker point;
     private Marker search;
-    private ImageButton botonContinuar;
+    private Boolean ciclismo = false, continuar = false, home = true, sear = true;
+    private int anio, mes, dia, capacidad, actividad, hora, minuto;
+    private String nombre;
+
 
 
     private FusedLocationProviderClient locationClient;
@@ -74,11 +86,38 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Encuentro encuentro = new Encuentro();
         setContentView(R.layout.activity_seleccionar__lugar);
+        Bundle bundle3 = getIntent().getBundleExtra("Bundle2");
 
-
+        if(bundle3.getInt("posicion") == 0){
+                Log.i("hola", "si es igual");
+                ciclismo = true;
+        }
         locationRequest = createLocationRequest();
-        botonContinuar = findViewById(R.id.continuar);
+
+        findViewById(R.id.continuar).setOnClickListener(v -> {
+
+            if(ciclismo && continuar){
+                setsEncuentro(bundle3, encuentro);
+                Recorrido recorrido = new Recorrido(inicioL, finalL);
+                encuentro.setRecorrido(recorrido);
+                PersistidorEncuentro.añadirEncuentro(encuentro);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+            if(ciclismo && !continuar){
+                continuar = true;
+            }
+            if(!ciclismo){
+                LatLng loc = new LatLng(latitud,longitud);
+                setsEncuentro(bundle3, encuentro);
+                PersistidorEncuentro.añadirEncuentro(encuentro);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         address = findViewById(R.id.edtTxtViewMap);
         geocoder = new Geocoder(this);
 
@@ -90,16 +129,23 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                 super.onLocationResult(locationResult);
                 Location location =locationResult.getLastLocation();
                 if(location != null && latitud != location.getLatitude() && longitud != location.getLongitude()){
-                    if(point != null){
-                        point.remove();
-                    }
+
 
                     latitud = location.getLatitude();
                     longitud = location.getLongitude();
                     LatLng loc =new LatLng(location.getLatitude(),location.getLongitude());
+                    if(point != null && !ciclismo && !continuar)
+                    {
+                        inicioL = loc;
+                        point.remove();
+                    }else if(ciclismo && continuar){
+                        finalL = loc;
+                    }
                     try {
+                        inicioL = loc;
                         List<Address> addressesList = geocoder.getFromLocation(latitud, longitud, 2);
                         point = mMap.addMarker(new MarkerOptions().position(loc).title(addressesList.get(0).getAddressLine(0)));
+
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -122,17 +168,26 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                             if (addressesList != null && !addressesList.isEmpty()) {
                                 Address result = addressesList.get(0);
                                 if (mMap != null) {
-
+                                    home = false;
                                     LatLng location = new LatLng(result.getLatitude(), result.getLongitude());
                                     latitud = result.getLatitude();
                                     longitud = result.getLongitude();
-                                    search = mMap.addMarker(new MarkerOptions().position(location).title(result.getAddressLine(0)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-                                    if(point != null)
+
+                                    /*if(point != null && !ciclismo && !continuar)
                                     {
+                                        inicioL = location;
                                         point.remove();
-                                    }
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-                                    mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+                                    }if(point != null && ciclismo && !continuar){
+                                        point.remove();
+                                    }if(point != null && ciclismo && continuar){
+                                        point.remove();
+                                        finalL = location;
+                                    }if(search != null){
+                                        search.remove();
+                                        finalL = location;
+                                    }*/
+                                    search = mMap.addMarker(new MarkerOptions().position(location).title(result.getAddressLine(0)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
                                     stopLocationUpdates();
                                 } else {
                                     Toast.makeText(v.getContext(), "address not found", Toast.LENGTH_SHORT).show();
@@ -159,6 +214,38 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
 
         if(ContextCompat.checkSelfPermission(this, LOCATION_NAME)== PackageManager.PERMISSION_GRANTED) {
             checkSettingLocation();
+        }
+    }
+    private void setsEncuentro(Bundle bundle, Encuentro encuentro){
+
+        anio = bundle.getInt("anio");
+        mes = bundle.getInt("mes");
+        dia = bundle.getInt("dia");
+        hora = bundle.getInt("hora");
+        minuto = bundle.getInt("minuto");
+
+        capacidad = bundle.getInt("capacidad");
+        nombre = bundle.getString("nombre");
+        actividad = bundle.getInt("posicion");
+
+        encuentro.setFecha(LocalDateTime.of(anio,mes,dia,hora,minuto));
+        encuentro.setCapacidad(capacidad);
+        encuentro.setNombre(nombre);
+        encuentro.setLugarEncuentro(new LugarEncuentro(inicioL));
+
+        switch (actividad){
+            case 0:
+                encuentro.setActividad(Actividad.CICLISMO);
+                break;
+            case 1:
+                encuentro.setActividad(Actividad.CICLISMO_MONTAÑA);
+                break;
+            case 2:
+                encuentro.setActividad(Actividad.MONTAÑISMO);
+                break;
+            case 3:
+                encuentro.setActividad(Actividad.SENDERISMO);
+                break;
         }
     }
     private void startLocationUpdates(){
@@ -258,20 +345,48 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
+
                 //mMap.clear();
                 initView();
-
-                if(point!=null)
+                if(point != null && !ciclismo && !continuar)
                 {
+                    inicioL = latLng;
+                    point.remove();
+                }if(point != null && ciclismo && continuar){
+                    if(!home)
+                    {
+                        point.remove();
+                    }
+                    finalL = latLng;
+                    home = false;
+                }if(point != null && ciclismo && !continuar) {
+                    inicioL = latLng;
                     point.remove();
                 }
+                if(search != null && !ciclismo && !continuar)
+                {
+                    inicioL = latLng;
+                    search.remove();
+                }if(search != null && ciclismo && !continuar){
+                    search.remove();
+                }
+                if(search != null && ciclismo && continuar){
+                    if(!home && !sear)
+                    {
+                        search.remove();
+                    }
+                    finalL = latLng;
+                    home = false;
+                    sear = false;
+                }
+
                 latitud = latLng.latitude;
                 longitud = latLng.longitude;
                 point = mMap.addMarker(new MarkerOptions().position(latLng).title(geoCoderSearchLatLng(latLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
-                if(search != null)
-                {
-                    search.remove();
-                }
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+
+                stopLocationUpdates();
+
                 //mMap.addMarker(new MarkerOptions().position(BOGOTA).title("Marker in Bogota"));
             }
         });
@@ -294,5 +409,10 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
             e1.printStackTrace();
         }
         return ret;
+    }
+
+    public void finalizarEncuentro(View view) {
+
+        startActivity(new Intent(view.getContext(), MainActivity.class));
     }
 }

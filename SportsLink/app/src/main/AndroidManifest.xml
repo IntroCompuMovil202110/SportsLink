@@ -17,6 +17,7 @@
         android:theme="@style/Theme.SportsLink">
         <activity android:name=".controlador.RutaActivity"></activity>
         <activity android:name=".controlador.RoutasActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

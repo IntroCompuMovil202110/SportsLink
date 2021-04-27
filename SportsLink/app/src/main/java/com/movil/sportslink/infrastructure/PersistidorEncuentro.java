@@ -2,6 +2,7 @@ package com.movil.sportslink.infrastructure;
 
 import android.location.Location;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class PersistidorEncuentro {
 
-    ArrayList<Encuentro> encuentrosTodos;
+    private static ArrayList<Encuentro> encuentrosTodos = new ArrayList<Encuentro>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public PersistidorEncuentro(){
@@ -26,7 +27,7 @@ public class PersistidorEncuentro {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private ArrayList<Encuentro> hacerEncuentros(){
+    public static ArrayList<Encuentro> hacerEncuentros(){
         ArrayList<Encuentro> encuentros = new ArrayList<>();
 
         LocalDateTime t = LocalDateTime.of(2021,
@@ -54,5 +55,18 @@ public class PersistidorEncuentro {
 
     public ArrayList<Encuentro> getEncuentrosTodos() {
         return encuentrosTodos;
+    }
+
+    public static void añadirEncuentro(Encuentro encuentro){
+        Log.i("mirar", "encuentro.toString()");
+        if(encuentrosTodos.isEmpty()){
+           encuentrosTodos = hacerEncuentros();
+            Log.i("lol", "encuentro.toString()");
+        }
+
+        encuentrosTodos.add(encuentro);
+        for (Encuentro encuentros:encuentrosTodos) {
+                  Log.i("Encuentros",encuentros.toString());
+        }
     }
 }

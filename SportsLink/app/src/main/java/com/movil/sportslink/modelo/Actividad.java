@@ -1,6 +1,8 @@
 package com.movil.sportslink.modelo;
 
-public enum Actividad {
+import java.io.Serializable;
+
+public enum Actividad implements Serializable {
     CICLISMO,
     CICLISMO_MONTAÑA,
     SENDERISMO,

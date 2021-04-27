@@ -22,8 +22,7 @@ public class CrearEncuentro3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_encuentro3);
         //Button seleccionarLugarEncuentroButton =findViewById(R.id.seleccionarLugarEncuentroButton);
 
-        ciudadSpinner = findViewById(R.id.crearEncuentro3ciudadSpinner);
-        lugarEncuentroEditText = findViewById(R.id.crearEncuentro3lugarEncuentroEditText);
+
 
         findViewById(R.id.seleccionarLugarEncuentroButton).setOnClickListener(v -> {
             startActivity(new Intent(v.getContext(), seleccionar_LugarActivity.class));
