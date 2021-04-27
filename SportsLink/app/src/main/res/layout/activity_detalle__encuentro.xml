@@ -8,7 +8,7 @@
     tools:context=".controlador.Detalle_EncuentroActivity">
 
     <Button
-        android:id="@+id/participanteEncuentrobutton"
+        android:id="@+id/recorridob"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="147dp"

@@ -83,7 +83,10 @@ public class PermissionsRequestor {
                                         permission.equals(Manifest.permission.ACCESS_BACKGROUND_LOCATION))) {
                             continue;
                         }
-                        permissionList.add(permission);
+                        if(permission.equals(Manifest.permission.ACCESS_FINE_LOCATION)){
+                            permissionList.add(permission);
+                        }
+
                     }
                 }
             }

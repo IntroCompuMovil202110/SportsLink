@@ -2,7 +2,10 @@ package com.movil.sportslink.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ public class Detalle_EncuentroActivity extends AppCompatActivity {
     TextView nombre;
     TextView fecha;
     TextView actividad;
+    Button recorri;
     int latitud;
     int longitud;
     @Override
@@ -23,6 +27,7 @@ public class Detalle_EncuentroActivity extends AppCompatActivity {
         nombre =  findViewById(R.id.NombreEncuentrotextView);
         fecha = findViewById(R.id.fechaEncuentrotextView);
         actividad = findViewById(R.id.Actividad_encuentrotextView);
+        recorri = findViewById(R.id.Recorridobutton);
         Bundle bundle = getIntent().getBundleExtra("Bundle");
         nombre.setText(bundle.getString("nombre"));
         fecha.setText(bundle.getString("fecha"));
@@ -33,5 +38,16 @@ public class Detalle_EncuentroActivity extends AppCompatActivity {
         //nombre.setText(encuentroSeleccionado.getNombre().toString());
         //fecha.setText(encuentroSeleccionado.getFecha().toString());
        // actividad.setText(encuentroSeleccionado.getActividad().toString());
+
+        recorri.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), RoutasActivity.class);
+            Bundle bundlen = new Bundle();
+            bundlen.putDouble("LATINICIO",4.769347740268768);
+            bundlen.putDouble("LNGINICIO", -74.15699849763922);
+            bundlen.putDouble("LATFINAL",4.870754183361389);
+            bundlen.putDouble("LNGFINAL",-74.14501749482967);
+            intent.putExtras(bundlen);
+            startActivity(intent);
+        });
     }
 }

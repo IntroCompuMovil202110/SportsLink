@@ -91,7 +91,7 @@ public class RoutasActivity extends AppCompatActivity {
         pfinal = new GeoCoordinates(bundle.getDouble("LATFINAL"),bundle.getDouble("LNGFINAL"));
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        handleAndroidPermissions();
+        //handleAndroidPermissions();
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
         SettingsClient client = LocationServices.getSettingsClient(this);
@@ -184,7 +184,7 @@ public class RoutasActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-
+        loadMapScene();
         Log.d(TAG, "Location update started ..............: ");
     }
 

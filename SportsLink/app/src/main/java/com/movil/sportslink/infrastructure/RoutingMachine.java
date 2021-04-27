@@ -104,7 +104,7 @@ public class RoutingMachine {
                     public void onRouteCalculated(@Nullable RoutingError routingError, @Nullable List<Route> routes) {
                         if (routingError == null) {
                             Route route = routes.get(0);
-                            //showRouteDetails(route);
+                            showRouteDetails(route);
                             showRouteOnMap(route);
                         } else {
                             showDialog("Error while calculating a route:", routingError.toString());
