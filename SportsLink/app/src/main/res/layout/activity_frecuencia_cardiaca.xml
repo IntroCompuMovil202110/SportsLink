@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackBackground"
+    tools:context=".controlador.FrecuenciaCardiacaActivity">
+
+    <TextView
+        android:id="@+id/frecuenciaCardiaca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Mi frecuencia cardiaca"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/frecuenciaCardiacaImageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/frecuenciaCardiaca"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/frecuenciacardiaca" />
+
+    <TextView
+        android:id="@+id/frecuenciaCardiacaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/frecuenciaCardiacaImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="- BPM"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+</RelativeLayout>
