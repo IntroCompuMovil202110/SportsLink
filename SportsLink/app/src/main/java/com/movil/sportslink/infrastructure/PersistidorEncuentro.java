@@ -33,7 +33,7 @@ public class PersistidorEncuentro {
                 Month.JULY, 29, 19, 30, 40);
         LatLng l = new LatLng(4.655339, -74.008268);
         LugarEncuentro lugar = new LugarEncuentro(l);
-        Usuario u = new Usuario("jin");
+        Usuario u = new Usuario("jin","jiin@gmail.com","31324782394","Me gusta crear actividades");
         Encuentro enc = new Encuentro(t,5,"Caminata corta",lugar,u, Actividad.SENDERISMO);
         encuentros.add(enc);
 

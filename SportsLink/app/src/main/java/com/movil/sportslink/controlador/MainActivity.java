@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.navigation_search) {
             } else if (itemId == R.id.navigation_chat) {
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, new ChatFragment(), null)
+                        .replace(R.id.fragmentContainer, new ConversacionesFragment(), null)
                         .setReorderingAllowed(true).addToBackStack(null).commit();
             } else if (itemId == R.id.navigation_profile) {
                 fragmentManager.beginTransaction()
