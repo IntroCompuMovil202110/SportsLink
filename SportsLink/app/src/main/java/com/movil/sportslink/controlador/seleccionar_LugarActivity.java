@@ -112,8 +112,9 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                 bundle.putDouble("LNGFINAL",finit.getPosition().longitude);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                /*Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);*/
+
+                intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
 
             }
             if(ciclismo && !continuar){

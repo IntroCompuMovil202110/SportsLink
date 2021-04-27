@@ -256,6 +256,10 @@ public class RoutasActivity extends AppCompatActivity {
                 pfinal);
     }
 
+    public void volverButtonClicked(View view){
+        finish();
+    }
+
     public void cambiarRuta(GeoCoordinates i, GeoCoordinates f){
         routingMachine.addRoute(i,f);
     }
