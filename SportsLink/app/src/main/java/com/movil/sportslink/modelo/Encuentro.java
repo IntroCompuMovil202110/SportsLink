@@ -1,5 +1,8 @@
 package com.movil.sportslink.modelo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
@@ -36,6 +39,23 @@ public class Encuentro implements Serializable {
         this.actividad = Actividad.CICLISMO;
 
     }
+
+    protected Encuentro(Parcel in) {
+        capacidad = in.readInt();
+        nombre = in.readString();
+    }
+
+    /*public static final Creator<Encuentro> CREATOR = new Creator<Encuentro>() {
+        @Override
+        public Encuentro createFromParcel(Parcel in) {
+            return new Encuentro(in);
+        }
+
+        @Override
+        public Encuentro[] newArray(int size) {
+            return new Encuentro[size];
+        }
+    };*/
 
     @Override
     public String toString() {
@@ -112,4 +132,16 @@ public class Encuentro implements Serializable {
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
     }
+
+    /*@Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(capacidad);
+        dest.writeString(nombre);
+        //dest.write
+    }*/
 }

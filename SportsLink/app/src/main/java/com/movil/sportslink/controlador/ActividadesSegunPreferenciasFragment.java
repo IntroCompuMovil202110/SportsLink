@@ -33,13 +33,25 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button crearEncuentro = view.findViewById(R.id.crearButton);
-        SearchView busqueda = view.findViewById(R.id.actividadesSegunPreferenciasSearchView);
-        busqueda.setOnClickListener(v -> {
+        SearchView searchView= view.findViewById(R.id.actividadesSegunPreferenciasSearchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
 
-            for (Encuentro encuentros:PersistidorEncuentro.encuentrosTodos) {
+                Intent intent = new Intent(getContext(), Buscar_Activity.class);
+                intent.putExtra("query",query);
+                startActivity(intent);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
+
+
+
         //ImageButton verActividades = view.findViewById(R.id.ButtonVerActividad);
         crearEncuentro.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), CrearEncuentro1Activity.class);

@@ -42,14 +42,14 @@ public class PersistidorEncuentro {
                 Month.JUNE, 01, 8, 10, 0);
         l = new LatLng(4.671247217956718, -74.03870764126252);
         enc = new Encuentro(t,4,"Viaje hasta guatavita",new LugarEncuentro(l),u, Actividad.SENDERISMO);
-
+        encuentros.add(enc);
         Recorrido recorrido = new Recorrido(l,new LatLng(4.9325035073728305, -73.83278120802645));
 
         t = LocalDateTime.of(2021,
                 Month.JUNE, 02, 7, 0, 0);
         l = new LatLng(4.598165607309617, -74.0649054086511);
         enc = new Encuentro(t,8,"Hiking por monserrate",new LugarEncuentro(l),u, Actividad.SENDERISMO);
-
+        encuentros.add(enc);
         return encuentros;
     }
 
