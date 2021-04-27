@@ -173,19 +173,27 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                                     latitud = result.getLatitude();
                                     longitud = result.getLongitude();
 
-                                    /*if(point != null && !ciclismo && !continuar)
+                                    if(point != null && !ciclismo && !continuar)
                                     {
                                         inicioL = location;
                                         point.remove();
                                     }if(point != null && ciclismo && !continuar){
+                                        Log.i("hjo2", "entroo2o");
                                         point.remove();
                                     }if(point != null && ciclismo && continuar){
-                                        point.remove();
+                                        Log.i("hjo", "entrooo");
                                         finalL = location;
-                                    }if(search != null){
+
+                                    }if(search != null && !sear){
+                                        Log.i("si_entra", "tal vez");
                                         search.remove();
                                         finalL = location;
-                                    }*/
+                                    }
+                                    if(search != null && sear && continuar){
+                                        Log.i("si_entra2", "tal vez2");
+                                    search.remove();
+                                    finalL = location;
+                                 }
                                     search = mMap.addMarker(new MarkerOptions().position(location).title(result.getAddressLine(0)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
                                     stopLocationUpdates();
@@ -353,7 +361,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                     inicioL = latLng;
                     point.remove();
                 }if(point != null && ciclismo && continuar){
-                    if(!home)
+                    if(!home && !continuar)
                     {
                         point.remove();
                     }
