@@ -26,7 +26,7 @@
         <activity android:name=".controlador.Detalle_EncuentroActivity"></activity>
         <activity android:name=".controlador.PictureActivity" />
         <activity android:name=".controlador.IniciarEncuentroActivity"/>
-        <activity android:name=".controlador.PictureActivity" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
