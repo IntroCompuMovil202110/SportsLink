@@ -21,6 +21,9 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -35,11 +38,15 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.here.sdk.mapviewlite.MapViewLite;
+
+import java.io.IOException;
+import java.util.List;
 
 public class RoutasActivity extends AppCompatActivity {
 
@@ -105,9 +112,13 @@ public class RoutasActivity extends AppCompatActivity {
             }
         });
 
+
+
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
                 Location location = locationResult.getLastLocation();
                 Log.i("LOCATION", "Location update in the callback: " + location);
                 if (location != null) {
@@ -228,6 +239,10 @@ public class RoutasActivity extends AppCompatActivity {
             public void onLoadScene(@Nullable MapScene.ErrorCode errorCode) {
                 if (errorCode == null) {
                     routingMachine = new RoutingMachine(RoutasActivity.this, mapView);
+                    if(pInicio != null && pfinal != null && routingMachine != null){
+
+                        cambiarRuta(pInicio,pfinal);
+                    }
                 } else {
                     Log.d(TAG, "onLoadScene failed: " + errorCode.toString());
                 }

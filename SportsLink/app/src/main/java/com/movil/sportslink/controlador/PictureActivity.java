@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -74,21 +75,13 @@ public class PictureActivity extends AppCompatActivity {
         });
 
         continuar.setOnClickListener(v -> {
-            terminar();
+
 
         });
 
     }
 
-    protected void terminar(){
-        Intent data = new Intent();
-        String text = "Result to be returned....";
-//---set the data to pass back---
-        data.setData(Uri.parse(text));
-        setResult(RESULT_OK, data);
-//---close the activity---
-        finish();
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -103,23 +96,25 @@ public class PictureActivity extends AppCompatActivity {
                         final InputStream imageStream= getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage= BitmapFactory.decodeStream(imageStream);
                         image.setImageBitmap(selectedImage);
-                        resImage = selectedImage;
+                        //terminar();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
                 break;
             case REQUEST_IMAGE_CAPTURE:
-                System.out.println(data.getExtras());
-
-                File imgFile = new  File(currentPhotoPath);
-                if(imgFile.exists())            {
-                    image.setImageURI(Uri.fromFile(imgFile));
+                if(resultCode== RESULT_OK){
+                    System.out.println(data.getExtras());
+                    File imgFile = new  File(currentPhotoPath);
+                    if(imgFile.exists())            {
+                        image.setImageURI(Uri.fromFile(imgFile));
+                    }
+                    BitmapDrawable drawable = (BitmapDrawable) image.getDrawable();
+                    resImage = drawable.getBitmap();
+                    galleryAddPic();
+                    //terminar();
                 }
 
-
-
-                galleryAddPic();
                 break;
         }
     }
@@ -222,7 +217,7 @@ public class PictureActivity extends AppCompatActivity {
             if (photoFile != null) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.movil.taller2.android.fileprovider",
+                        "com.movil.sportslink.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
