@@ -24,7 +24,6 @@
         android:roundIcon="@mipmap/ic_spl_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".controlador.FrecuenciaCardiacaActivity"/>
         <activity android:name=".controlador.PictureActivity" />
 
         <provider
