@@ -115,7 +115,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                 mMap.addMarker(new MarkerOptions().position(init.getPosition()).title("Punto de inicio") ) ;
             }
             if(!ciclismo){
-
+                //adsadadas
                 setsEncuentro(bundle3, encuentro);
                 PersistidorEncuentro.añadirEncuentro(encuentro);
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
