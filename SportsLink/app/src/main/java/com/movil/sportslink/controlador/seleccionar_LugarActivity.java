@@ -75,6 +75,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
     private Boolean ciclismo = false, continuar = false, home = true, sear = true;
     private int anio, mes, dia, capacidad, actividad, hora, minuto;
     private String nombre;
+    private Marker init, finit;
 
 
 
@@ -91,8 +92,8 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
         Bundle bundle3 = getIntent().getBundleExtra("Bundle2");
 
         if(bundle3.getInt("posicion") == 0){
-                Log.i("hola", "si es igual");
-                ciclismo = true;
+            Log.i("hola", "si es igual");
+            ciclismo = true;
         }
         locationRequest = createLocationRequest();
 
@@ -100,7 +101,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
 
             if(ciclismo && continuar){
                 setsEncuentro(bundle3, encuentro);
-                Recorrido recorrido = new Recorrido(inicioL, finalL);
+                Recorrido recorrido = new Recorrido(init.getPosition(), finit.getPosition());
                 encuentro.setRecorrido(recorrido);
                 PersistidorEncuentro.añadirEncuentro(encuentro);
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
@@ -108,10 +109,13 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
 
             }
             if(ciclismo && !continuar){
+                Toast.makeText(this,"Seleccione el punto final", Toast.LENGTH_LONG).show();
                 continuar = true;
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(init.getPosition()).title("Punto de inicio") ) ;
             }
             if(!ciclismo){
-                LatLng loc = new LatLng(latitud,longitud);
+                //adsadadas
                 setsEncuentro(bundle3, encuentro);
                 PersistidorEncuentro.añadirEncuentro(encuentro);
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
@@ -134,18 +138,12 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                     latitud = location.getLatitude();
                     longitud = location.getLongitude();
                     LatLng loc =new LatLng(location.getLatitude(),location.getLongitude());
-                    if(point != null && !ciclismo && !continuar)
-                    {
-                        inicioL = loc;
-                        point.remove();
-                    }else if(ciclismo && continuar){
-                        finalL = loc;
-                    }
+
                     try {
                         inicioL = loc;
                         List<Address> addressesList = geocoder.getFromLocation(latitud, longitud, 2);
                         point = mMap.addMarker(new MarkerOptions().position(loc).title(addressesList.get(0).getAddressLine(0)));
-
+                        init = point;
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -168,33 +166,47 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                             if (addressesList != null && !addressesList.isEmpty()) {
                                 Address result = addressesList.get(0);
                                 if (mMap != null) {
-                                    home = false;
+
                                     LatLng location = new LatLng(result.getLatitude(), result.getLongitude());
                                     latitud = result.getLatitude();
                                     longitud = result.getLongitude();
 
-                                    if(point != null && !ciclismo && !continuar)
+                                    if(!continuar)
                                     {
-                                        inicioL = location;
-                                        point.remove();
-                                    }if(point != null && ciclismo && !continuar){
-                                        Log.i("hjo2", "entroo2o");
-                                        point.remove();
-                                    }if(point != null && ciclismo && continuar){
-                                        Log.i("hjo", "entrooo");
-                                        finalL = location;
+                                        Log.i("sear" ,"!continuar");
+                                        if(point != null)
+                                        {
+                                            Log.i("sear2", "point");
+                                            point.remove();
+                                        }
+                                        if(search != null)
+                                        {
+                                            Log.i("sear3", "search");
+                                            search.remove();
+                                        }
 
-                                    }if(search != null && !sear){
-                                        Log.i("si_entra", "tal vez");
-                                        search.remove();
-                                        finalL = location;
+                                    }else {
+                                        if(point != null)
+                                        {
+                                            Log.i("sear2", "point");
+                                            point.remove();
+                                        }
+                                        if(search != null)
+                                        {
+                                            Log.i("sear3", "search");
+                                            search.remove();
+                                        }
+
                                     }
-                                    if(search != null && sear && continuar){
-                                        Log.i("si_entra2", "tal vez2");
-                                    search.remove();
-                                    finalL = location;
-                                 }
+
                                     search = mMap.addMarker(new MarkerOptions().position(location).title(result.getAddressLine(0)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                                    if(!continuar)
+                                    {
+                                        init = search;
+                                    }else
+                                    {
+                                        finit = search;
+                                    }
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
                                     stopLocationUpdates();
                                 } else {
@@ -210,14 +222,12 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                 return false;
             }
         });
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-    //public void contactActivity(View view) {
-      //  startActivity( new Intent(view.getContext(), ContactActivity.class));
-    //}
+
     private void initView(){
 
         if(ContextCompat.checkSelfPermission(this, LOCATION_NAME)== PackageManager.PERMISSION_GRANTED) {
@@ -239,7 +249,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
         encuentro.setFecha(LocalDateTime.of(anio,mes,dia,hora,minuto));
         encuentro.setCapacidad(capacidad);
         encuentro.setNombre(nombre);
-        encuentro.setLugarEncuentro(new LugarEncuentro(inicioL));
+        encuentro.setLugarEncuentro(new LugarEncuentro(init.getPosition()));
 
         switch (actividad){
             case 0:
@@ -281,12 +291,6 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
         SettingsClient client = LocationServices.getSettingsClient(this);
         Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-//        task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
-//            @Override
-//            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-//                startLocationUpdates();
-//            }
-//        });
         task.addOnFailureListener(this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -354,51 +358,45 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
             @Override
             public void onMapLongClick(LatLng latLng) {
 
-                //mMap.clear();
-                initView();
-                if(point != null && !ciclismo && !continuar)
+                if(!continuar)
                 {
-                    inicioL = latLng;
-                    point.remove();
-                }if(point != null && ciclismo && continuar){
-                    if(!home && !continuar)
+                    if (point != null)
                     {
                         point.remove();
                     }
-                    finalL = latLng;
-                    home = false;
-                }if(point != null && ciclismo && !continuar) {
-                    inicioL = latLng;
-                    point.remove();
-                }
-                if(search != null && !ciclismo && !continuar)
-                {
-                    inicioL = latLng;
-                    search.remove();
-                }if(search != null && ciclismo && !continuar){
-                    search.remove();
-                }
-                if(search != null && ciclismo && continuar){
-                    if(!home && !sear)
+                    if(search != null)
                     {
                         search.remove();
                     }
-                    finalL = latLng;
-                    home = false;
-                    sear = false;
+                }else {
+                    if (point != null)
+                    {
+                        point.remove();
+                    }
+                    if(search != null)
+                    {
+                        search.remove();
+                    }
                 }
+
+                initView();
 
                 latitud = latLng.latitude;
                 longitud = latLng.longitude;
                 point = mMap.addMarker(new MarkerOptions().position(latLng).title(geoCoderSearchLatLng(latLng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                if(!continuar)
+                {
+                    init = point;
+                }else
+                {
+                    finit = point;
+                }
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
                 stopLocationUpdates();
-
-                //mMap.addMarker(new MarkerOptions().position(BOGOTA).title("Marker in Bogota"));
             }
         });
-        // Add a marker in Sydney and move the camera
+
         LatLng sydney = new LatLng(latitud, longitud);
         point  = mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
