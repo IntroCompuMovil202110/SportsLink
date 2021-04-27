@@ -104,8 +104,16 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                 Recorrido recorrido = new Recorrido(init.getPosition(), finit.getPosition());
                 encuentro.setRecorrido(recorrido);
                 PersistidorEncuentro.añadirEncuentro(encuentro);
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                Intent intent = new Intent(getBaseContext(), RoutasActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putDouble("LATINICIO",inicioL.latitude);
+                bundle.putDouble("LNGINICIO",inicioL.longitude);
+                bundle.putDouble("LATFINAL",finit.getPosition().latitude);
+                bundle.putDouble("LNGFINAL",finit.getPosition().longitude);
+                intent.putExtras(bundle);
                 startActivity(intent);
+                /*Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);*/
 
             }
             if(ciclismo && !continuar){

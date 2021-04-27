@@ -93,9 +93,14 @@ public class RoutasActivity extends AppCompatActivity {
         mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override public void onSuccess(Location location) {Log.i("LOCATION", "onSuccess location");
                 if (location != null) {
-                    //Log.i(" LOCATION ", "Longitud: " + location.getLongitude());
-                    //Log.i(" LOCATION ", "Latitud: " + location.getLatitude());
-                    userLocation = location;
+                    Log.i(" LOCATION ", "Longitud: " + location.getLongitude());
+                    Log.i(" LOCATION ", "Latitud: " + location.getLatitude());
+
+                    pInicio = new GeoCoordinates(location.getLatitude(),location.getLongitude());
+                    if(pInicio != null && pfinal != null && routingMachine != null){
+                        routingMachine.clearMap();
+                        cambiarRuta(pInicio,pfinal);
+                    }
                 }
             }
         });
@@ -104,14 +109,17 @@ public class RoutasActivity extends AppCompatActivity {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 Location location = locationResult.getLastLocation();
-                //Log.i("LOCATION", "Location update in the callback: " + location);
+                Log.i("LOCATION", "Location update in the callback: " + location);
                 if (location != null) {
                     //latitude.setText("Latitude:  " + String.valueOf(location.getLatitude()));
                     //longitude.setText("Longitude:  " + String.valueOf(location.getLongitude()));
                     //altitude.setText("Altitude:   " + String.valueOf(location.getAltitude()));
                     userLocation = location;
-                    if(userLocation != null){
+                    pInicio = new GeoCoordinates(location.getLatitude(),location.getLongitude());
 
+                    if(pInicio != null && pfinal != null && routingMachine != null){
+                        routingMachine.clearMap();
+                        cambiarRuta(pInicio,pfinal);
                     }
                     //Toast.makeText(mapas.this, "La dirección es"+location.getLatitude(), Toast.LENGTH_SHORT).show();
                 }
