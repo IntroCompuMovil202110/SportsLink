@@ -31,14 +31,16 @@
   <EditText
       android:id="@+id/etPlannedDate"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="30dp"
       android:layout_alignParentTop="true"
       android:layout_marginTop="139dp"
       android:clickable="true"
       android:focusable="false"
-      android:hint="report_planned_date"
+      android:hint="Introduce una fecha"
       android:inputType="date"
-      android:maxLines="1" />
+      android:maxLines="1"
+      android:textColor="@color/black"
+      android:background="@color/white"/>
 
   <TextView
       android:id="@+id/crearEncuentro2horaTextView"

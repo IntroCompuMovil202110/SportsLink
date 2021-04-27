@@ -15,6 +15,7 @@ public class Usuario implements Serializable {
     private ArrayList<Encuentro> encuentros;
     private ArrayList<Conversacion> conversaciones;
     private Bitmap foto;
+    private File rutaFoto;
 
     public Usuario(String nombre, String correo, String numero,String descripcion) {
         this.nombre = nombre;

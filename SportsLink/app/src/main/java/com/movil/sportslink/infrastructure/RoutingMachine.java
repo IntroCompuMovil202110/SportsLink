@@ -89,6 +89,10 @@ public class RoutingMachine {
         Waypoint startWaypoint = new Waypoint(startGeoCoordinates);
         Waypoint destinationWaypoint = new Waypoint(destinationGeoCoordinates);
 
+        Camera camera = mapView.getCamera();
+        camera.setTarget(inicio);
+        camera.setZoomLevel(15);
+
         List<Waypoint> waypoints =
                 new ArrayList<>(Arrays.asList(startWaypoint, destinationWaypoint));
 
@@ -100,7 +104,7 @@ public class RoutingMachine {
                     public void onRouteCalculated(@Nullable RoutingError routingError, @Nullable List<Route> routes) {
                         if (routingError == null) {
                             Route route = routes.get(0);
-                            showRouteDetails(route);
+                            //showRouteDetails(route);
                             showRouteOnMap(route);
                         } else {
                             showDialog("Error while calculating a route:", routingError.toString());
@@ -114,10 +118,9 @@ public class RoutingMachine {
         int lengthInMeters = route.getLengthInMeters();
 
         String routeDetails =
-                "Travel Time: " + formatTime(estimatedTravelTimeInSeconds)
-                + ", Length: " + formatLength(lengthInMeters);
+                "Distancia: " + formatLength(lengthInMeters);
 
-        showDialog("Route Details", routeDetails);
+        showDialog("Detalles de la ruta", routeDetails);
     }
 
     private String formatTime(long sec) {
@@ -151,7 +154,7 @@ public class RoutingMachine {
         mapPolylines.add(routeMapPolyline);
 
         // Draw a circle to indicate starting point and destination.
-        addCircleMapMarker(startGeoCoordinates, R.drawable.green_dot);
+        addCircleMapMarker(startGeoCoordinates, R.drawable.red_dot);
         addCircleMapMarker(destinationGeoCoordinates, R.drawable.green_dot);
 
         // Log maneuver instructions per route section.
