@@ -112,10 +112,6 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
                 bundle.putDouble("LNGFINAL",finit.getPosition().longitude);
                 intent.putExtras(bundle);
                 startActivity(intent);
-
-                intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
-
             }
             if(ciclismo && !continuar){
                 Toast.makeText(this,"Seleccione el punto final", Toast.LENGTH_LONG).show();
