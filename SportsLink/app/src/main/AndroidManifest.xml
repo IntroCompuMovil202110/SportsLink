@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.BODY_SENSORS" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -24,8 +23,10 @@
         android:roundIcon="@mipmap/ic_spl_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".controlador.IniciarEncuentroActivity"/>
+        <activity android:name=".controlador.Detalle_EncuentroActivity"></activity>
         <activity android:name=".controlador.PictureActivity" />
+        <activity android:name=".controlador.IniciarEncuentroActivity"/>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
