@@ -17,60 +17,23 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/crearEncuentro3ciudadTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/crearEncuentro3textView"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Ciudad"
-        android:textColor="@color/grayButtonBackground"
-        android:textSize="20sp" />
-
-    <Spinner
-        android:id="@+id/crearEncuentro3ciudadSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/crearEncuentro3ciudadTextView"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/white" />
-
-    <TextView
-        android:id="@+id/crearEncuentro3lugarEncuentroTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/crearEncuentro3ciudadSpinner"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:text="Lugar de encuentro"
-        android:textColor="@color/grayButtonBackground"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/crearEncuentro3lugarEncuentroEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/crearEncuentro3lugarEncuentroTextView"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/white"
-        android:inputType="text"
-        android:textColor="@color/grayButtonBackground" />
-
     <Button
         android:id="@+id/seleccionarLugarEncuentroButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/crearEncuentro3lugarEncuentroEditText"
-        android:layout_marginStart="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="234dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="449dp"
+        android:background="@drawable/roundcorner"
         android:backgroundTint="@color/grayButtonBackground"
         android:text="Seleccionar en mapa"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:background="@drawable/roundcorner" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/crearEncuentro3crearRecorridoButton"
