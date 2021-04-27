@@ -32,7 +32,7 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/crearButton"
       android:layout_marginStart="20dp"
-      android:layout_marginTop="10dp"
+      android:layout_marginTop="20dp"
       android:text="Actividades segun tus preferencias"
       android:textColor="@color/white"
       android:textSize="20sp"
@@ -40,10 +40,10 @@
 
   <ImageView
       android:id="@+id/imageView11"
-      android:layout_width="380dp"
-      android:layout_height="280dp"
+      android:layout_width="350dp"
+      android:layout_height="250dp"
       android:scaleType="fitXY"
-      android:layout_marginTop="20dp"
+      android:layout_marginTop="2dp"
       android:layout_centerHorizontal="true"
       android:layout_below="@id/actividadesTextView"
 

@@ -9,26 +9,13 @@
     tools:context=".controlador.Perfil_Vista">
 
     <TextView
-        android:id="@+id/textViewAcrividades2"
-        android:layout_width="234dp"
-        android:layout_height="58dp"
-        android:text="Actividad 1"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewActividadesPreferidas2"
-        app:layout_constraintVertical_bias="0.138" />
-
-    <TextView
         android:id="@+id/textViewDescripcion4"
         android:layout_width="303dp"
         android:layout_height="72dp"
         android:layout_marginBottom="112dp"
-        android:background="#FBF8F8"
+        android:background="@drawable/white_roundcorner"
         android:text="Descripción"
+        android:padding="10dp"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +26,7 @@
         app:layout_constraintVertical_bias="0.164" />
 
     <TextView
-        android:id="@+id/textViewNombreUsuario2"
+        android:id="@+id/nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre de Usuario"
@@ -52,21 +39,7 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <TextView
-        android:id="@+id/textViewActividadesPreferidas2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Actividades preferidas:"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.311"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion4"
-        app:layout_constraintVertical_bias="0.084" />
-
-    <TextView
-        android:id="@+id/textViewNumero3"
+        android:id="@+id/numero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3xx-xxx-xxx"
@@ -76,8 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toEndOf="@+id/textViewNumero4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAcrividades2"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion4" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -86,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombreUsuario2"
+        app:layout_constraintTop_toBottomOf="@+id/nombre"
         app:layout_constraintVertical_bias="0.072"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:srcCompat="@tools:sample/avatars" />
@@ -102,16 +74,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAcrividades2"
-        app:layout_constraintVertical_bias="0.171" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion4" />
 
     <Button
         android:id="@+id/buttonAñadirContacto"
         android:layout_width="189dp"
         android:layout_height="50dp"
         android:backgroundTint="#009688"
-        android:text="Añador contacto"
-        android:textColor="#000000"
+        android:text="Añadir contacto"
+        android:textColor="@color/white"
+        android:background="@drawable/roundcorner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

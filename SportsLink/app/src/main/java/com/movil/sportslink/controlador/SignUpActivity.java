@@ -18,10 +18,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.movil.sportslink.R;
+import com.movil.sportslink.modelo.Usuario;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText email, password;
+    EditText email, password, username, descp;
     FirebaseAuth mAuth;
 
     @Override
@@ -33,6 +34,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        username = findViewById(R.id.nombre);
+        descp = findViewById(R.id.descripcion);
         mAuth = FirebaseAuth.getInstance();
 
         signInTextView.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +83,11 @@ public class SignUpActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user){
         if(user != null){
             //Autenticado
-            System.out.println("Registrado");
-            startActivity(new Intent(this, MainActivity.class));
+            Usuario usuario = new Usuario(username.getText().toString(),email.getText().toString(),"34012381212",descp.getText().toString());
+            Intent intent = new Intent(this, MainActivity.class);
+            System.out.println(usuario.toString());
+            intent.putExtra("usuario", usuario);
+            startActivity(intent);
         }else{
             email.setText("");
             password.setText("");
