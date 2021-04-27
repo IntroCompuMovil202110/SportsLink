@@ -1,5 +1,6 @@
 package com.movil.sportslink.controlador;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.fragmentContainer, new ActividadesSegunPreferenciasFragment(), null)
                         .setReorderingAllowed(true).addToBackStack(null).commit();
             } else if (itemId == R.id.navigation_search) {
+                Intent intent = new Intent(this, IniciarEncuentroActivity.class);
+                startActivity(intent);
             } else if (itemId == R.id.navigation_chat) {
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainer, new ConversacionesFragment(), null)
