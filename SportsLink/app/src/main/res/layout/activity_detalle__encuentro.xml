@@ -63,7 +63,7 @@
 
     <TextView
         android:id="@+id/Actividad_encuentrotextView"
-        android:layout_width="84dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Actividad"
         android:textColor="@color/backgroundNavigationBarColor"
