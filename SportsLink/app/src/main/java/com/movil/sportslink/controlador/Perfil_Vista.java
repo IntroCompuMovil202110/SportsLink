@@ -59,6 +59,7 @@ public class Perfil_Vista extends AppCompatActivity {
         intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
 
         intent.putExtra(ContactsContract.Intents.Insert.NAME,nomb);
+        intent.putExtra(ContactsContract.Intents.Insert.PHONE,num);
 
         startActivity(intent);
     }
