@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class PersistidorEncuentro {
 
-    private static ArrayList<Encuentro> encuentrosTodos = new ArrayList<Encuentro>();
+    public static ArrayList<Encuentro> encuentrosTodos = new ArrayList<Encuentro>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public PersistidorEncuentro(){
