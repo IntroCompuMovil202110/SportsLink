@@ -2,12 +2,14 @@ package com.movil.sportslink.controlador;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,26 +38,32 @@ public class Buscar_Activity extends AppCompatActivity {
     ListView listaEncuentros;
     ArrayList<Encuentro> encuen;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_);
         String query = getIntent().getStringExtra("query");
-        if(PersistidorEncuentro.encuentrosTodos != null)
+        PersistidorEncuentro per = new PersistidorEncuentro();
+
+        if(per.encuentrosTodos != null)
         {
-            encuen =  PersistidorEncuentro.encuentrosTodos;
+            encuen =  per.encuentrosTodos;
         }else
         {
-            encuen = PersistidorEncuentro.hacerEncuentros();
+            encuen = per.hacerEncuentros();
         }
         Log.i("lista", String.valueOf(encuen.size()));
         ArrayList<Encuentro> finalEncuentros = new ArrayList<Encuentro>();
         for(Encuentro encuentros: encuen){
             if(encuentros.getNombre().contains(query)){
                 finalEncuentros.add(encuentros);
+                System.out.println(encuentros.getNombre());
             }
+            finalEncuentros.add(encuentros);
         }
-        encuentrosAdapter  = new EncuentrosAdapter(finalEncuentros, this);
+        encuentrosAdapter = new EncuentrosAdapter(finalEncuentros,this);
+
 
         //handle listview and assign adapter
         ListView lView = findViewById(R.id.listaEncuentrosDynamic);

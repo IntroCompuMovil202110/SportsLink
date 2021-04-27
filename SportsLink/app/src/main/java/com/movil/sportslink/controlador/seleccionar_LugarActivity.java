@@ -98,12 +98,15 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
         locationRequest = createLocationRequest();
 
         findViewById(R.id.continuar).setOnClickListener(v -> {
+            PersistidorEncuentro per = new PersistidorEncuentro();
 
             if(ciclismo && continuar){
                 setsEncuentro(bundle3, encuentro);
                 Recorrido recorrido = new Recorrido(init.getPosition(), finit.getPosition());
                 encuentro.setRecorrido(recorrido);
-                PersistidorEncuentro.añadirEncuentro(encuentro);
+
+
+                per.añadirEncuentro(encuentro);
                 Intent intent = new Intent(getBaseContext(), RoutasActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putDouble("LATINICIO",inicioL.latitude);
@@ -122,7 +125,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
             if(!ciclismo){
                 //adsadadas
                 setsEncuentro(bundle3, encuentro);
-                PersistidorEncuentro.añadirEncuentro(encuentro);
+                per.añadirEncuentro(encuentro);
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
             }

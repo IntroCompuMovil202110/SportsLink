@@ -42,6 +42,8 @@ public class IniciarEncuentroActivity extends AppCompatActivity implements Senso
         super.onResume();
         sensorManager.registerListener(this, temperatureSensor, SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(this, humiditySensor, SensorManager.SENSOR_DELAY_NORMAL);
+        temperaturaTextView.setText("20 " + "C");
+        humedadTextView.setText("23%");
     }
 
     @Override
