@@ -257,7 +257,8 @@ public class RoutasActivity extends AppCompatActivity {
     }
 
     public void volverButtonClicked(View view){
-        finish();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
     public void cambiarRuta(GeoCoordinates i, GeoCoordinates f){
