@@ -34,7 +34,7 @@ public class UsersConvAdapter extends RecyclerView.Adapter<UsersConvAdapter.View
     @Override
     public void onBindViewHolder(@NonNull UsersConvAdapter.ViewHolder holder, int position) {
         Usuario usuario = usuarios.get(position);
-        holder.nombre.setText(usuario.getNombre());
+        //holder.nombre.setText(usuario.getNombre());
 
     }
 

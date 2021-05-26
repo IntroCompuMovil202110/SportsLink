@@ -39,7 +39,7 @@ public class CrearEncuentro2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_encuentro2);
 
 
-        horaTimePicker = findViewById(R.id.crearEncuentro2horaTimePicker);
+       /* horaTimePicker = findViewById(R.id.crearEncuentro2horaTimePicker);
         capacidadSpinner = findViewById(R.id.crearEncuentro2capacidadSpinner);
         etPlannedDate = findViewById(R.id.etPlannedDate);
         Bundle bundle2  = getIntent().getBundleExtra("Bundle");
@@ -79,7 +79,7 @@ public class CrearEncuentro2Activity extends AppCompatActivity {
         ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, capacidades);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        capacidadSpinner.setAdapter(arrayAdapter);
+        capacidadSpinner.setAdapter(arrayAdapter);*/
     }
 
     private void showDatePickerDialog() {

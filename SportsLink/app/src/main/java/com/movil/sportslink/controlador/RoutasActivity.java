@@ -28,8 +28,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.here.sdk.core.GeoCoordinates;
-import com.here.sdk.mapviewlite.MapScene;
-import com.here.sdk.mapviewlite.MapStyle;
+
 import com.movil.sportslink.R;
 import com.movil.sportslink.infrastructure.PermissionsRequestor;
 import com.movil.sportslink.infrastructure.RoutingMachine;
@@ -43,7 +42,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import com.here.sdk.mapviewlite.MapViewLite;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -62,8 +61,8 @@ public class RoutasActivity extends AppCompatActivity {
     private static final String TAG = RoutasActivity.class.getSimpleName();
 
     private PermissionsRequestor permissionsRequestor;
-    private MapViewLite mapView;
-    private RoutingMachine routingMachine;
+   // private MapViewLite mapView;
+    //private RoutingMachine routingMachine;
 
     private GeoCoordinates pInicio;
     private GeoCoordinates pfinal;
@@ -71,7 +70,7 @@ public class RoutasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_routas);
+        /*setContentView(R.layout.activity_routas);
         Intent intent = getIntent();
         // Get a MapView instance from layout.
         mapView = findViewById(R.id.map_view);
@@ -165,13 +164,13 @@ public class RoutasActivity extends AppCompatActivity {
                         break;
                 }
             }
-        });
+        });*/
 
     }
 
 
 
-    protected void startLocationUpdates() {
+    /*protected void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -291,7 +290,7 @@ public class RoutasActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
-    }
+    }*/
 
 
 

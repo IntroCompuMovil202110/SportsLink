@@ -56,10 +56,10 @@ public class Buscar_Activity extends AppCompatActivity {
         Log.i("lista", String.valueOf(encuen.size()));
         ArrayList<Encuentro> finalEncuentros = new ArrayList<Encuentro>();
         for(Encuentro encuentros: encuen){
-            if(encuentros.getNombre().contains(query)){
+           /* if(encuentros.getNombre().contains(query)){
                 finalEncuentros.add(encuentros);
                 System.out.println(encuentros.getNombre());
-            }
+            }*/
             finalEncuentros.add(encuentros);
         }
         encuentrosAdapter = new EncuentrosAdapter(finalEncuentros,this);
@@ -74,11 +74,11 @@ public class Buscar_Activity extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), Detalle_EncuentroActivity.class);
                 Bundle bundle = new Bundle();
 
-                bundle.putString("nombre", finalEncuentros.get(position).getNombre() );
+                /*bundle.putString("nombre", finalEncuentros.get(position).getNombre() );
                 bundle.putString("fecha", finalEncuentros.get(position).getFecha().toString());
                 bundle.putString("actividad", finalEncuentros.get(position).getActividad().toString());
                 bundle.putInt("latitud", (int) finalEncuentros.get(position).getLugarEncuentro().getUbicacion().latitude);
-                bundle.putInt("longitud", (int) finalEncuentros.get(position).getLugarEncuentro().getUbicacion().longitude);
+                bundle.putInt("longitud", (int) finalEncuentros.get(position).getLugarEncuentro().getUbicacion().longitude);*/
 
                 intent.putExtra("Bundle",bundle);
                 startActivity(intent);

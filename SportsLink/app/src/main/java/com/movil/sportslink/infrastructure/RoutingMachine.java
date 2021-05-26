@@ -30,15 +30,7 @@ import com.here.sdk.core.GeoBox;
 import com.here.sdk.core.GeoCoordinates;
 import com.here.sdk.core.GeoPolyline;
 import com.here.sdk.core.errors.InstantiationErrorException;
-import com.here.sdk.mapviewlite.Camera;
-import com.here.sdk.mapviewlite.MapImage;
-import com.here.sdk.mapviewlite.MapImageFactory;
-import com.here.sdk.mapviewlite.MapMarker;
-import com.here.sdk.mapviewlite.MapMarkerImageStyle;
-import com.here.sdk.mapviewlite.MapPolyline;
-import com.here.sdk.mapviewlite.MapPolylineStyle;
-import com.here.sdk.mapviewlite.MapViewLite;
-import com.here.sdk.mapviewlite.PixelFormat;
+
 import com.here.sdk.routing.CalculateRouteCallback;
 import com.here.sdk.routing.CarOptions;
 import com.here.sdk.routing.Maneuver;
@@ -57,7 +49,7 @@ import com.movil.sportslink.R;
 
 public class RoutingMachine {
 
-    private static final String TAG = RoutingMachine.class.getName();
+    /*private static final String TAG = RoutingMachine.class.getName();
 
     private Context context;
     private MapViewLite mapView;
@@ -265,5 +257,5 @@ public class RoutingMachine {
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
-    }
+    }*/
 }

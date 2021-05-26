@@ -11,7 +11,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.icu.util.BuddhistCalendar;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,7 +20,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,8 +49,6 @@ import com.movil.sportslink.R;
 import com.movil.sportslink.infrastructure.PersistidorEncuentro;
 import com.movil.sportslink.modelo.Actividad;
 import com.movil.sportslink.modelo.Encuentro;
-import com.movil.sportslink.modelo.LugarEncuentro;
-import com.movil.sportslink.modelo.Recorrido;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -102,8 +98,8 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
 
             if(ciclismo && continuar){
                 setsEncuentro(bundle3, encuentro);
-                Recorrido recorrido = new Recorrido(init.getPosition(), finit.getPosition());
-                encuentro.setRecorrido(recorrido);
+                //Recorrido recorrido = new Recorrido(init.getPosition(), finit.getPosition());
+                //encuentro.setRecorrido(recorrido);
 
 
                 per.añadirEncuentro(encuentro);
@@ -254,7 +250,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
         nombre = bundle.getString("nombre");
         actividad = bundle.getInt("posicion");
 
-        encuentro.setFecha(LocalDateTime.of(anio,mes,dia,hora,minuto));
+        /*encuentro.setFecha(LocalDateTime.of(anio,mes,dia,hora,minuto));
         encuentro.setCapacidad(capacidad);
         encuentro.setNombre(nombre);
         encuentro.setLugarEncuentro(new LugarEncuentro(init.getPosition()));
@@ -272,7 +268,7 @@ public class seleccionar_LugarActivity extends FragmentActivity implements OnMap
             case 3:
                 encuentro.setActividad(Actividad.SENDERISMO);
                 break;
-        }
+        }*/
     }
     private void startLocationUpdates(){
         if(ContextCompat.checkSelfPermission(this, LOCATION_NAME)== PackageManager.PERMISSION_GRANTED) {

@@ -13,9 +13,14 @@
     <color name="grayButtonBackground">#00D9C5</color>
     <color name="golden">#ffbd59</color>
 
-    <color name="blackBackground">#212121</color>
+    <color name="blackBackground">#17212d</color>
+    <color name="blackBackground2">#1b2836</color>
 
     <color name="redText">#A64852</color>
     <color name="signUpColor">#B56546</color>
     <color name="backgroundNavigationBarColor" >#FF00D9C5</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

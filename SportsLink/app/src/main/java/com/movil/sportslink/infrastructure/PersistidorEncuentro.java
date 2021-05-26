@@ -1,6 +1,5 @@
 package com.movil.sportslink.infrastructure;
 
-import android.location.Location;
 import android.os.Build;
 import android.util.Log;
 
@@ -9,8 +8,6 @@ import androidx.annotation.RequiresApi;
 import com.google.android.gms.maps.model.LatLng;
 import com.movil.sportslink.modelo.Actividad;
 import com.movil.sportslink.modelo.Encuentro;
-import com.movil.sportslink.modelo.LugarEncuentro;
-import com.movil.sportslink.modelo.Recorrido;
 import com.movil.sportslink.modelo.Usuario;
 
 import java.time.LocalDateTime;
@@ -33,7 +30,7 @@ public class PersistidorEncuentro {
         LocalDateTime t = LocalDateTime.of(2021,
                 Month.JULY, 29, 19, 30, 40);
         LatLng l = new LatLng(4.655339, -74.008268);
-        LugarEncuentro lugar = new LugarEncuentro(l);
+        /*LugarEncuentro lugar = new LugarEncuentro(l);
         Usuario u = new Usuario("jin","jiin@gmail.com","31324782394","Me gusta crear actividades");
         Encuentro enc = new Encuentro(t,5,"Un recorrido",lugar,u, Actividad.CICLISMO);
         encuentros.add(enc);
@@ -50,8 +47,8 @@ public class PersistidorEncuentro {
         l = new LatLng(4.598165607309617, -74.0649054086511);
         enc = new Encuentro(t,8,"Hiking por monserrate",new LugarEncuentro(l),u, Actividad.SENDERISMO);
         encuentros.add(enc);
-        System.out.println("Hay "+encuentros.size());
-        return encuentros;
+        System.out.println("Hay "+encuentros.size());*/
+        return null;
     }
 
     public ArrayList<Encuentro> getEncuentrosTodos() {

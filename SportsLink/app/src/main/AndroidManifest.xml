@@ -23,20 +23,19 @@
         android:roundIcon="@mipmap/ic_spl_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".controlador.Detalle_EncuentroActivity"></activity>
+        <activity android:name=".controlador.TrackingActivity"></activity>
+        <activity android:name=".controlador.CrearRutaEncuentro" />
+        <activity android:name=".controlador.Detalle_EncuentroActivity" />
         <activity android:name=".controlador.PictureActivity" />
-        <activity android:name=".controlador.IniciarEncuentroActivity"/>
+        <activity android:name=".controlador.IniciarEncuentroActivity" />
         <activity android:name=".controlador.Buscar_Activity" />
-
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.movil.sportslink.android.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
-
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
@@ -46,6 +45,11 @@
         <activity android:name=".controlador.ChatActivity" />
         <activity android:name=".controlador.RutaActivity" />
         <activity android:name=".controlador.RoutasActivity" />
+
+        <service
+            android:name=".services.MeetingStartedService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -91,7 +95,7 @@
         <activity android:name=".controlador.Perfil_Vista" />
         <activity android:name=".controlador.Recorrido_Automatico" />
         <activity android:name=".controlador.Recorrido_Manual" />
-        <activity android:name=".controlador.Encuentro_Usuarios" />
+        <activity android:name=".controlador.EncuentroActivity" />
         <activity android:name=".controlador.Encuentro_Creador" />
         <activity android:name=".controlador.MainActivity" />
     </application>

@@ -56,7 +56,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
         //Handle TextView and display string from your list
         TextView listItemText = (TextView)view.findViewById(R.id.nombre);
-        listItemText.setText(list.get(position).getNombre());
+        //listItemText.setText(list.get(position).getNombre());
 
         //Handle buttons and add onClickListeners
 
@@ -75,9 +75,9 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 Bundle bundle= new Bundle();
-                String nombre = list.get(position).getNombre();
+                //String nombre = list.get(position).getNombre();
                 String num = list.get(position).getNumeroCelular();
-                bundle.putString("NOMBRE", list.get(position).getNombre());
+                //bundle.putString("NOMBRE", list.get(position).getNombre());
                 bundle.putString("NUMERO", list.get(position).getNumeroCelular());
 
                 Intent intent = new Intent(parent.getContext(), Perfil_Vista.class);

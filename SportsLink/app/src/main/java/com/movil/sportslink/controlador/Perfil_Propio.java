@@ -68,7 +68,7 @@ public class Perfil_Propio extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        editarPerfil = view.findViewById(R.id.buttonEditarPerfil);
+        //editarPerfil = view.findViewById(R.id.buttonEditarPerfil);
         Bundle bundle= getActivity().getIntent().getBundleExtra("bundle");
 
         image = view.findViewById(R.id.image);
@@ -97,10 +97,7 @@ public class Perfil_Propio extends Fragment {
         String email = mAuth.getCurrentUser().getEmail();
         nombre.setText(email);
 
-        editarPerfil.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), PreferenciasUsuario.class);
-            startActivity(intent);
-        });
+
 
 
         cerrarSesion.setOnClickListener(v -> {

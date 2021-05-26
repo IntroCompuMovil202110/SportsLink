@@ -8,45 +8,51 @@ import java.util.ArrayList;
 
 public class Usuario implements Serializable {
 
-    private String nombre;
+    private String id;
+    private String name;
+    private String lastName;
     private String numeroCelular;
     private String correo;
     private String descripcion;
-    private ArrayList<Encuentro> encuentros;
-    private ArrayList<Conversacion> conversaciones;
-    private Bitmap foto;
-    private File rutaFoto;
+    private ArrayList<String> encuentros;
+    private Ubicacion ubicacion;
 
-    public Usuario(String nombre, String correo, String numero,String descripcion) {
-        this.nombre = nombre;
-        this.numeroCelular = numero;
+
+    public Usuario() {
+    }
+
+    public Usuario(String id, String name, String lastName, String numeroCelular, String correo, String descripcion, ArrayList<String> encuentros) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.numeroCelular = numeroCelular;
         this.correo = correo;
         this.descripcion = descripcion;
-        encuentros = new ArrayList<>();
+        this.encuentros = encuentros;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getId() {
+        return id;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Bitmap getFoto() {
-        return foto;
+    public String getName() {
+        return name;
     }
 
-    public void setFoto(Bitmap foto) {
-        this.foto = foto;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getNumeroCelular() {
@@ -65,19 +71,27 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    public ArrayList<Encuentro> getEncuentros() {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public ArrayList<String> getEncuentros() {
         return encuentros;
     }
 
-    public void setEncuentros(ArrayList<Encuentro> encuentros) {
+    public void setEncuentros(ArrayList<String> encuentros) {
         this.encuentros = encuentros;
     }
 
-    public ArrayList<Conversacion> getConversaciones() {
-        return conversaciones;
+    public Ubicacion getUbicacion() {
+        return ubicacion;
     }
 
-    public void setConversaciones(ArrayList<Conversacion> conversaciones) {
-        this.conversaciones = conversaciones;
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 }

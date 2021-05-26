@@ -98,6 +98,46 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="20dp"
           android:layout_marginTop="20dp"
+          android:text="Apellido"
+          android:textColor="@color/white"
+          android:textSize="20sp" />
+
+      <EditText
+          android:id="@+id/apellido"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:layout_marginEnd="20dp"
+          android:backgroundTint="@color/golden"
+          android:importantForAutofill="no"
+
+          android:textColor="@color/white" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:layout_marginTop="20dp"
+          android:text="Celular"
+          android:textColor="@color/white"
+          android:textSize="20sp" />
+
+      <EditText
+          android:id="@+id/celular"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:layout_marginEnd="20dp"
+          android:backgroundTint="@color/golden"
+          android:importantForAutofill="no"
+          android:textColor="@color/white"
+          android:inputType="number"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:layout_marginTop="20dp"
           android:text="Descripcion"
           android:textColor="@color/white"
           android:textSize="20sp" />
@@ -110,7 +150,7 @@
           android:layout_marginEnd="20dp"
           android:layout_marginTop="20dp"
           android:background="@drawable/white_roundcorner"
-          android:backgroundTint="@color/white"
+          android:textColor="@color/white"
           android:hint="Descripción"
           android:importantForAutofill="no"
           android:inputType="textMultiLine" />
@@ -120,10 +160,10 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginStart="20dp"
-          android:layout_marginTop="130dp"
+          android:layout_marginTop="80dp"
           android:layout_marginEnd="20dp"
           android:backgroundTint="@color/redText"
-          android:text="Continue"
+          android:text="Continuar"
           android:textColor="@color/white"
           android:background="@drawable/roundcorner" />
 
@@ -148,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            android:text="Sign In"
+            android:text="Inicia sesion"
             android:textColor="@color/golden"
             android:textSize="20sp"
             android:textStyle="bold" />

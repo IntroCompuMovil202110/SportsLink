@@ -24,7 +24,7 @@ public class Perfil_Vista extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil__vista);
         Intent intent = getIntent();
-        Bundle bundle= getIntent().getExtras();;
+        Bundle bundle= getIntent().getExtras();
         nombre = findViewById(R.id.nombre);
         numero = findViewById(R.id.numero);
         agregar = findViewById(R.id.buttonAñadirContacto);

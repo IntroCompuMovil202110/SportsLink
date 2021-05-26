@@ -1,88 +1,39 @@
 package com.movil.sportslink.modelo;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Encuentro implements Serializable {
-    private LocalDateTime fecha;
-    private int capacidad;
+
+    private String id;
     private String nombre;
-    //private ArrayList<Usuario> participantes;
-    private LugarEncuentro lugarEncuentro;
-    private Recorrido recorrido;
-   // private  Usuario autor;
-    private Actividad actividad;
+    private String autor;
+    private String fecha;
+    private String hora;
+    private double latPuntoEncuentro;
+    private double lngPuntoEncuentro;
+    private double latPuntoFinal;
+    private double lngPuntoFinal;
+    private String municipio;
+    private String actividad;
+    private ArrayList<Participante> participantes;
 
-    public Encuentro(LocalDateTime fecha, int capacidad, String nombre, LugarEncuentro lugarEncuentro, Usuario autor, Actividad actividad) {
-        this.fecha = fecha;
-        this.capacidad = capacidad;
-        this.nombre = nombre;
-
-        this.lugarEncuentro = lugarEncuentro;
-
-        //this.autor = autor;
-        this.actividad = actividad;
-    }
 
     public Encuentro() {
-        this.fecha = LocalDateTime.now();
-        this.capacidad = 0;
-        this.nombre = "admin";
-        this.lugarEncuentro = new LugarEncuentro(new LatLng(4,12));
-        this.recorrido = new Recorrido(new LatLng(4,12),new LatLng(-4,12));
-        this.actividad = Actividad.CICLISMO;
-
     }
 
-    protected Encuentro(Parcel in) {
-        capacidad = in.readInt();
-        nombre = in.readString();
-    }
-
-    /*public static final Creator<Encuentro> CREATOR = new Creator<Encuentro>() {
-        @Override
-        public Encuentro createFromParcel(Parcel in) {
-            return new Encuentro(in);
-        }
-
-        @Override
-        public Encuentro[] newArray(int size) {
-            return new Encuentro[size];
-        }
-    };*/
-
-    @Override
-    public String toString() {
-        return "Encuentro{" +
-                "fecha=" + fecha +
-                ", capacidad=" + capacidad +
-                ", nombre='" + nombre + '\'' +
-                ", lugarEncuentro=" + lugarEncuentro +
-                ", recorrido=" + recorrido +
-                ", actividad=" + actividad +
-                '}';
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
+    public Encuentro(String nombre, String autor, String fecha, String hora, double latPuntoEncuentro, double lngPuntoEncuentro, double latPuntoFinal, double lngPuntoFinal, String municipio, String actividad) {
+        this.nombre = nombre;
+        this.autor = autor;
         this.fecha = fecha;
-    }
+        this.hora = hora;
 
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+        this.latPuntoEncuentro = latPuntoEncuentro;
+        this.lngPuntoEncuentro = lngPuntoEncuentro;
+        this.latPuntoFinal = latPuntoFinal;
+        this.lngPuntoFinal = lngPuntoFinal;
+        this.municipio = municipio;
+        this.actividad = actividad;
     }
 
     public String getNombre() {
@@ -93,55 +44,94 @@ public class Encuentro implements Serializable {
         this.nombre = nombre;
     }
 
-    /*public ArrayList<Usuario> getParticipantes() {
-        return participantes;
-    }
-
-    public void setParticipantes(ArrayList<Usuario> participantes) {
-        this.participantes = participantes;
-    }*/
-
-    public LugarEncuentro getLugarEncuentro() {
-        return lugarEncuentro;
-    }
-
-    public void setLugarEncuentro(LugarEncuentro lugarEncuentro) {
-        this.lugarEncuentro = lugarEncuentro;
-    }
-
-    public Recorrido getRecorrido() {
-        return recorrido;
-    }
-
-    public void setRecorrido(Recorrido recorrido) {
-        this.recorrido = recorrido;
-    }
-
-   /* public Usuario getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void setAutor(Usuario autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
-    }*/
+    }
 
-    public Actividad getActividad() {
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+
+    public double getLatPuntoEncuentro() {
+        return latPuntoEncuentro;
+    }
+
+    public void setLatPuntoEncuentro(double latPuntoEncuentro) {
+        this.latPuntoEncuentro = latPuntoEncuentro;
+    }
+
+    public double getLngPuntoEncuentro() {
+        return lngPuntoEncuentro;
+    }
+
+    public void setLngPuntoEncuentro(double lngPuntoEncuentro) {
+        this.lngPuntoEncuentro = lngPuntoEncuentro;
+    }
+
+    public double getLatPuntoFinal() {
+        return latPuntoFinal;
+    }
+
+    public void setLatPuntoFinal(double latPuntoFinal) {
+        this.latPuntoFinal = latPuntoFinal;
+    }
+
+    public double getLngPuntoFinal() {
+        return lngPuntoFinal;
+    }
+
+    public void setLngPuntoFinal(double lngPuntoFinal) {
+        this.lngPuntoFinal = lngPuntoFinal;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public String getActividad() {
         return actividad;
     }
 
-    public void setActividad(Actividad actividad) {
+    public void setActividad(String actividad) {
         this.actividad = actividad;
     }
 
-    /*@Override
-    public int describeContents() {
-        return 0;
+    public ArrayList<Participante> getParticipantes() {
+        return participantes;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(capacidad);
-        dest.writeString(nombre);
-        //dest.write
-    }*/
+    public void setParticipantes(ArrayList<Participante> participantes) {
+        this.participantes = participantes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 }

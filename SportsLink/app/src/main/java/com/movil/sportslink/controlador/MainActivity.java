@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.movil.sportslink.R;
+import com.movil.sportslink.services.MeetingStartedService;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -26,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.fragmentContainer, new ActividadesSegunPreferenciasFragment(), null)
                         .setReorderingAllowed(true).addToBackStack(null).commit();
             } else if (itemId == R.id.navigation_search) {
-                Intent intent = new Intent(this, IniciarEncuentroActivity.class);
-                startActivity(intent);
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, new EncuentrosUsuarioFragment(), null)
+                        .setReorderingAllowed(true).addToBackStack(null).commit();
             } else if (itemId == R.id.navigation_chat) {
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainer, new ConversacionesFragment(), null)
@@ -42,4 +44,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
     }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        startMeetingStartedListenerService();
+    }
+
+    private void startMeetingStartedListenerService() {
+        Intent intent = new Intent(MainActivity.this, MeetingStartedService.class);
+        MeetingStartedService.enqueueWork(MainActivity.this, intent);
+    }
+
 }
