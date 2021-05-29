@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sportslink/SignUp.dart';
 
 import 'AuthenticationService.dart';
 
@@ -26,33 +27,44 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 validator: (input) {
                   if(input!.isEmpty){
-                    return 'Provide an email';
+                    return 'Correo no valido';
                   }
                 },
                 decoration: InputDecoration(
-                    labelText: 'Email'
+                    labelText: 'Correo'
                 ),
                 onSaved: (input) => _email = input!,
               ),
               TextFormField(
                 validator: (input) {
                   if(input!.length < 6){
-                    return 'Longer password please';
+                    return 'La contraseña debe tener al menos 6 caractéres';
                   }
                 },
                 decoration: InputDecoration(
-                    labelText: 'Password'
+                    labelText: 'Contraseña'
                 ),
                 onSaved: (input) => _password = input!,
                 obscureText: true,
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: signIn,
-                child: Text('Sign in'),
+                child: Text('Iniciar sesión'),
+              ),
+              InkWell(
+                child: new Text('Registrarse'),
+                onTap: signUpRedirect
               ),
             ],
           )
       ),
+    );
+  }
+
+  void signUpRedirect(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SignUpPage()),
     );
   }
 
