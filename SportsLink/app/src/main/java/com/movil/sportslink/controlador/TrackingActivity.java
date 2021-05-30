@@ -65,7 +65,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TrackingActivity extends AppCompatActivity {
+public class TrackingActivity extends AppCompatActivity implements SensorEventListener {
 
     private static final String TAG = "A:";
     //Permission
@@ -101,15 +101,28 @@ public class TrackingActivity extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseUser user;
 
+
+    private Sensor temperatureSensor;
+    private Sensor humiditySensor;
+
     Boolean inicio = false;
     String idUsuarioSeguir;
     private ArrayList<MapMarker> usersMarkers;
     private ArrayList<MapImage> mapImages;
+    TextView temperatura;
+    TextView humedad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
+        temperatura = findViewById(R.id.temperatura);
+        humedad = findViewById(R.id.humedad);
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        temperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        humiditySensor = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+
         usersMarkers = new ArrayList<>();
         //Inflate
         centerButton= findViewById(R.id.centerButton);
@@ -180,6 +193,10 @@ public class TrackingActivity extends AppCompatActivity {
         super.onResume();
         mapView.onResume();
         sensorManager.registerListener(lightSensorListener, lightSensor,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, temperatureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, humiditySensor, SensorManager.SENSOR_DELAY_NORMAL);
+        temperatura.setText("Temperatura: "+"20 " + "C");
+        humedad.setText("Humedad: " +"23%");
         if(locationEnable){
             starLocating();
         }else{
@@ -562,4 +579,17 @@ public class TrackingActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor == temperatureSensor) {
+            temperatura.setText("Temperatura: "+ event.values[0] + "C");
+        } else if (event.sensor == humiditySensor) {
+            humedad.setText("Humedad: " + event.values[0] + "%");
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 }
