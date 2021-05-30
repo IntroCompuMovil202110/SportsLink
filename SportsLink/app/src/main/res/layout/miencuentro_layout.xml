@@ -8,7 +8,7 @@
     android:background="@color/blackBackground2">
 
     <TextView
-        android:id="@+id/nombre"
+        android:id="@+id/nombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -27,7 +27,7 @@
         android:text="ver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btrack"
-        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
 
     <Button
         android:id="@+id/btrack"
@@ -36,7 +36,7 @@
         android:text="Seguimiento"
         app:layout_constraintEnd_toStartOf="@id/bver"
         app:layout_constraintStart_toEndOf="@+id/binicio"
-        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
 
     <Button
         android:id="@+id/binicio"
@@ -45,7 +45,7 @@
         android:text="Punto inicio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btrack"
-        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
 
 
 

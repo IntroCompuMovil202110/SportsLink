@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.movil.sportslink.R;
 import com.movil.sportslink.controlador.EncuentroActivity;
 import com.movil.sportslink.controlador.TrackingActivity;
@@ -52,7 +50,7 @@ public class MiEncuentroAdapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.miencuentro_layout, null);
         }
 
-        TextView listItemText = view.findViewById(R.id.nombre);
+        TextView listItemText = view.findViewById(R.id.nombreUsuario);
         listItemText.setText(list.get(position).getNombre());
 
         Button binicio = (Button) view.findViewById(R.id.binicio);

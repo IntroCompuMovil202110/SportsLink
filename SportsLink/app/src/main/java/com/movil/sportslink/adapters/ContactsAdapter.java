@@ -27,7 +27,7 @@ public class ContactsAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
-        TextView tvNombre = (TextView) view.findViewById(R.id.nombre);
+        TextView tvNombre = (TextView) view.findViewById(R.id.nombreUsuario);
         String nombre = cursor.getString(DISPLAY_NAME_INDEX);
         tvNombre.setText(nombre);}
 }

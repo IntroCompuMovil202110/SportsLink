@@ -1,6 +1,8 @@
 package com.movil.sportslink.modelo;
 
-public class Ubicacion {
+import java.io.Serializable;
+
+public class Ubicacion implements Serializable {
     private double latitude;
     private double longitude;
     private boolean availability;

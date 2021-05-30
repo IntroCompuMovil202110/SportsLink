@@ -49,7 +49,7 @@ public class UsersConvAdapter extends RecyclerView.Adapter<UsersConvAdapter.View
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nombre = itemView.findViewById(R.id.nombre);
+            nombre = itemView.findViewById(R.id.nombreUsuario);
         }
     }
 

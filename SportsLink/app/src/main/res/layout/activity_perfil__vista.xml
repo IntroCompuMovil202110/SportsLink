@@ -14,9 +14,9 @@
         android:layout_height="72dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/white_roundcorner"
-        android:text="Descripción"
         android:padding="10dp"
-        android:textColor="#000000"
+        android:text="Descripción"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.164" />
 
     <TextView
-        android:id="@+id/nombre"
+        android:id="@+id/nombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre de Usuario"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario"
         app:layout_constraintVertical_bias="0.072"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:srcCompat="@tools:sample/avatars" />

@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.movil.sportslink.R;
 import com.movil.sportslink.controlador.Perfil_Vista;
-import com.movil.sportslink.controlador.PreferenciasUsuario;
 import com.movil.sportslink.modelo.Usuario;
 
 import java.util.ArrayList;
@@ -55,13 +54,13 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         }
 
         //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.nombre);
+        TextView listItemText = (TextView)view.findViewById(R.id.nombreUsuario);
         //listItemText.setText(list.get(position).getNombre());
 
         //Handle buttons and add onClickListeners
 
-        Button addBtn = (Button)view.findViewById(R.id.msg);
-        ImageButton perfilBtn = (ImageButton) view.findViewById(R.id.perfil);
+        Button addBtn = (Button)view.findViewById(R.id.verUsuario);
+        ImageButton perfilBtn = (ImageButton) view.findViewById(R.id.perfilUsuario);
 
         addBtn.setOnClickListener(new View.OnClickListener(){
             @Override
