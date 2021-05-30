@@ -28,10 +28,12 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: <Widget>[
               ClipRRect(
-                  //borderRadius: BorderRadius.circular(90.0),
-                  child:Image(
-                    image: AssetImage('assets/logo.png'),
-                  ),
+                borderRadius: BorderRadius.circular(90.0),
+                child:Image(
+                  image: AssetImage('assets/knights.png'),
+                  width: 200,
+                  height: 200,
+                ),
               ),
 
               SizedBox(height: 30),
