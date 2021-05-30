@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sportslink/MapaInicio.dart';
 import 'package:sportslink/SignUp.dart';
 
 import 'AuthenticationService.dart';
@@ -20,21 +21,37 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(),
-      body: Form(
+      resizeToAvoidBottomInset: false,
+      body:
+      Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
+              ClipRRect(
+                  //borderRadius: BorderRadius.circular(90.0),
+                  child:Image(
+                    image: AssetImage('assets/logo.png'),
+                  ),
+              ),
+
+              SizedBox(height: 30),
               TextFormField(
                 validator: (input) {
                   if(input!.isEmpty){
                     return 'Correo no valido';
                   }
                 },
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Color.fromRGBO(252, 252, 252, 1)),
                 decoration: InputDecoration(
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromRGBO(252, 252, 252, 1))),
                     labelText: 'Correo'
                 ),
                 onSaved: (input) => _email = input!,
               ),
+              SizedBox(height: 30),
               TextFormField(
                 validator: (input) {
                   if(input!.length < 6){
@@ -47,17 +64,28 @@ class _LoginPageState extends State<LoginPage> {
                 onSaved: (input) => _password = input!,
                 obscureText: true,
               ),
-              ElevatedButton(
-                onPressed: signIn,
-                child: Text('Iniciar sesión'),
-              ),
-              InkWell(
-                child: new Text('Registrarse'),
-                onTap: signUpRedirect
-              ),
+              new Expanded(
+
+                  child: new Align(
+
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          ElevatedButton(
+                            onPressed: signIn,
+                            child: Text('Iniciar sesión'),
+                          ),
+                          InkWell(
+                              child: new Text('Registrarse'),
+                              onTap: signUpRedirect
+                          ),
+                          SizedBox(height: 30),
+                        ],
+                      )))
             ],
           )
       ),
+
     );
   }
 
@@ -72,12 +100,18 @@ class _LoginPageState extends State<LoginPage> {
     if(_formKey.currentState!.validate()){
       _formKey.currentState!.save();
       try{
-        User user = (await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password)) as User;
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
         print('sesion iniciada');
+        inicioRedirect();
       }on FirebaseAuthException catch (e){
         print(e.message);
       }
     }
+  }
+
+  void inicioRedirect(){
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => MapaInicio()),);
   }
 }
 

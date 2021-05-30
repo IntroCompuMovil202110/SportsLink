@@ -19,21 +19,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
 
         brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
+        primaryColor: Colors.indigo[800],
         accentColor: Colors.cyan[600],
 
         // Define the default font family.
-        fontFamily: 'Georgia',
+        fontFamily: 'RadikalLight',
 
         // Define the default TextTheme. Use this to specify the default
         // text styling for headlines, titles, bodies of text, and more.
         textTheme: TextTheme(
           headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          bodyText2: TextStyle(fontSize: 18.0, fontFamily: 'Hind'),
+          button: TextStyle(fontSize: 18.0, fontWeight:  FontWeight.bold),
         ),
 
       ),
