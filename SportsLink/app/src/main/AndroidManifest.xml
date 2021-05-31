@@ -23,7 +23,9 @@
         android:roundIcon="@mipmap/ic_spl_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".controlador.TrackingActivity"></activity>
+        <activity android:name=".controlador.CrearChatGrupalActivity"></activity>
+        <activity android:name=".controlador.ChatsGrupalesActivity" />
+        <activity android:name=".controlador.TrackingActivity" />
         <activity android:name=".controlador.CrearRutaEncuentro" />
         <activity android:name=".controlador.Detalle_EncuentroActivity" />
         <activity android:name=".controlador.PictureActivity" />
@@ -49,7 +51,6 @@
         <service
             android:name=".services.MeetingStartedService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -1,4 +1,4 @@
-package com.movil.sportslink.controlador;
+package com.movil.sportslink.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

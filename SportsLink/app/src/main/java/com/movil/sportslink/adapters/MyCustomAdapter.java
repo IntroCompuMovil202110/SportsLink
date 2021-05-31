@@ -75,7 +75,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
         chatBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ChatActivity.class);
-            intent.putStringArrayListExtra("com.movil.sportslink.usuarios", new ArrayList<>(Arrays.
+            intent.putStringArrayListExtra(ChatActivity.USERS_EXTRA_BUNDLE, new ArrayList<>(Arrays.
                     asList(new String[]{list.get(position).getId(), FirebaseAuth.getInstance().getCurrentUser().getUid()})));
             context.startActivity(intent);
         });

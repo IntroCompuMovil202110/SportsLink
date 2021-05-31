@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.movil.sportslink.R;
+import com.movil.sportslink.adapters.MensajeAdapter;
 import com.movil.sportslink.modelo.Conversacion;
 import com.movil.sportslink.modelo.Mensaje;
 
@@ -29,6 +30,7 @@ public class ChatActivity extends AppCompatActivity {
     private final static String PATH_CONVERSACIONES = "conversaciones";
     private final static String PATH_MENSAJES = "mensajes";
     private final static String PATH_USERS = "users";
+    public final static String USERS_EXTRA_BUNDLE = "com.movil.sportslink.usuarios";
     private final TreeMap<String, String> uidToNameMapping = new TreeMap<>();
     private String sourceUserUid;
     private String chatId;
