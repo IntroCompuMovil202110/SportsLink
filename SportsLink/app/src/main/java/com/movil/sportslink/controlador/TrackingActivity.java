@@ -127,7 +127,7 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
         //Inflate
         centerButton= findViewById(R.id.centerButton);
         centerButton.setVisibility(View.INVISIBLE);
-        staticLocationImage= MapImageFactory.fromResource(this.getResources(),R.drawable.poi2);
+        //staticLocationImage= MapImageFactory.fromResource(this.getResources(),R.drawable.poi2);
 
         //DataBase
         mAuth= FirebaseAuth.getInstance();
@@ -504,49 +504,78 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
                 System.out.println(snapshot.getValue());
                 Encuentro encuentro = snapshot.getValue(Encuentro.class);
                 ArrayList<Participante> participantes = encuentro.getParticipantes();
+
+                participantes.removeIf(n -> (n.getId().equals(idUser)));
+
                 for(Participante p : participantes){
-                    if(!p.getId().equals(idUser)){
-                        System.out.println(p.getId());
+                        System.out.println("USUARIO " + p.getId());
+                        MapMarker nuevo = null;
+                        MapMarker viejo = null;
                         Metadata metadata;
                         metadata = new Metadata();
-
-                        for(MapMarker m : usersMarkers){
-                            MapMarker n;
-
-                            metadata.setString("ID",p.getId());
-                            System.out.println("VALOR METADATA " + m.getMetadata().getString("ID"));
-                            if(m.getMetadata().getString("ID").equals(p.getId())){
-                                System.out.println("First " + p.getId());
-                                n = new MapMarker(new GeoCoordinates(p.getLatitude(),p.getLongitude()),mapImages.get(usersMarkers.indexOf(m)));
-                                n.setMetadata(metadata);
-                                mapView.getMapScene().removeMapMarker(m);
-                                usersMarkers.set(usersMarkers.indexOf(m),n);
-                                mapView.getMapScene().addMapMarker(n);
-                                System.out.println(usersMarkers);
-
-                            }else{
-
-                                if(usersMarkers.size() != 7){
-                                    n = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),mapImages.get(usersMarkers.size()-1));
-                                }else{
-                                    n = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),mapImages.get(6));
+                        int i = 0;
+                        metadata.setString("ID",p.getId());
+                        for(MapMarker n : usersMarkers){
+                            try{
+                                if(n.getMetadata().getString("ID") == null){
+                                    System.out.println("LA TIENE NUL " + p.getId());
+                                    break;
                                 }
+                            }catch (Exception e){
+                                System.out.println("EL CULPABLE ES" + p.getId());
+                                break;
+                            }
 
-                                n.setMetadata(metadata);
-                                usersMarkers.add(n);
-                                mapView.getMapScene().addMapMarker(n);
+                            if(n.getMetadata().getString("ID").equals(p.getId())){
+                                nuevo = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),
+                                        (usersMarkers.indexOf(n) > 6) ? mapImages.get(6) : mapImages.get(usersMarkers.indexOf(n))
+                                );
+                                viejo = n;
+                                i = usersMarkers.indexOf(n);
+                                continue;
+
                             }
                         }
 
                         if(usersMarkers.isEmpty()){
                             MapMarker n;
-                            metadata.setString("ID",p.getId());
+
                             n = new MapMarker(new GeoCoordinates(p.getLatitude(),p.getLongitude()),mapImages.get(0));
                             n.setMetadata(metadata);
                             usersMarkers.add(n);
                             mapView.getMapScene().addMapMarker(n);
+                            System.out.println("PRIMER MARCADOR " + n.getMetadata());
+                            continue;
                         }
-                    }
+
+                        if(nuevo != null && viejo != null){
+                            nuevo.setMetadata(metadata);
+                            viejo.setMetadata(metadata);
+                            System.out.println(i + "ACTUALIZO A " + p.getId());
+                            mapView.getMapScene().removeMapMarker(usersMarkers.get(i));
+                            System.out.println("ANTES YA EN LISTA " + usersMarkers.size());
+                            usersMarkers.set(usersMarkers.indexOf(viejo),nuevo);
+                            System.out.println("INCREMENTO YA EN LISTA " + usersMarkers.size());
+                            mapView.getMapScene().addMapMarker(nuevo);
+                        }else{
+
+                            if(usersMarkers.size() < 7){
+                                System.out.println(usersMarkers.size());
+                                nuevo = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),mapImages.get(usersMarkers.size()-1));
+
+                            }else{
+                                nuevo = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),mapImages.get(6));
+                            }
+
+                            nuevo.setMetadata(metadata);
+                            System.out.println("ANTES " + usersMarkers.size());
+                            usersMarkers.add(nuevo);
+                            System.out.println("INCREMENTO " + usersMarkers.size());
+                            mapView.getMapScene().addMapMarker(nuevo);
+                            System.out.println("SE AGREGO A " + p.getId() + " COMO " +usersMarkers.size());
+                        }
+
+
 
                 }
 

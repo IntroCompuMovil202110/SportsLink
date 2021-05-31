@@ -74,32 +74,24 @@ public class EncuentrosUsuarioFragment extends Fragment {
 
                 Usuario usuario = snapshot.getValue(Usuario.class);
                  codigoEnc = usuario.getEncuentros();
-                 System.out.println("SUP USER "+usuario.getName());
-                obtenerObjectosEncuentro(new FirebaseCallBack() {
-                    @Override
-                    public void onCallBack(List<Encuentro> encuentros) {
-                        if(encuentros != null && !encuentros.isEmpty()){
-                            System.out.println("CALL BACK BOIS");
-                            MiEncuentroAdapter miEncuentroAdapter = new MiEncuentroAdapter((ArrayList<Encuentro>) encuentros,getContext());
-                            //EncuentrosAdapter miEncuentroAdapter2 = new EncuentrosAdapter((ArrayList<Encuentro>) encuentros,getContext());
-                            listEncuentros.setAdapter(miEncuentroAdapter);
-                            System.out.println(listEncuentros.toString());
-                        }
-                    }
+                 if(usuario.getEncuentros() != null && !usuario.getEncuentros().isEmpty()){
+
+                     obtenerObjectosEncuentro(new FirebaseCallBack() {
+                         @Override
+                         public void onCallBack(List<Encuentro> encuentros) {
+                             if(encuentros != null && !encuentros.isEmpty()){
+
+                                 MiEncuentroAdapter miEncuentroAdapter = new MiEncuentroAdapter((ArrayList<Encuentro>) encuentros,getContext());
+                                 //EncuentrosAdapter miEncuentroAdapter2 = new EncuentrosAdapter((ArrayList<Encuentro>) encuentros,getContext());
+                                 listEncuentros.setAdapter(miEncuentroAdapter);
+                                 System.out.println(listEncuentros.toString());
+                             }
+                         }
 
 
-                    /*@Override
-                    public void onCallBack(List<User> users) {
-                        if(usuarios != null && !usuarios.isEmpty()){
-                            usuarios.removeIf(user -> (!user.isAvailability()));
-                            usuarios.removeIf(user -> (user.getId().equals(userAu.getUid())));
-                            MyCustomAdapter adapter = new MyCustomAdapter(usuarios, UsuariosDisponibles.this);
-                            //handle listview and assign adapter
-                            ListView lView = findViewById(R.id.listaConv);
-                            lView.setAdapter(adapter);
-                        }
-                    }*/
-                });
+                     });
+                 }
+
 
             }
 
