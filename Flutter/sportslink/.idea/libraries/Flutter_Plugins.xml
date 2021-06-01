@@ -1,6 +1,14 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
-    <CLASSES />
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../Clases/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-7.0.0" />
+      <root url="file://$PROJECT_DIR$/../../../../Clases/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.2.0" />
+      <root url="file://$PROJECT_DIR$/../../../../Clases/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-1.1.3" />
+      <root url="file://$PROJECT_DIR$/../../../../Clases/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.1.0" />
+      <root url="file://$PROJECT_DIR$/../../../../Clases/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.2" />
+      <root url="file://$PROJECT_DIR$/../../../../Clases/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-1.2.0" />
+      <root url="file://$PROJECT_DIR$/../../../../Clases/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-2.0.6" />
+    </CLASSES>
     <JAVADOC />
     <SOURCES />
   </library>

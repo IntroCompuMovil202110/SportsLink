@@ -549,21 +549,44 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
             mapView.getCamera().lookAt(new GeoCoordinates(myLocation.getLatitude(),myLocation.getLongitude()),2500);
         }
     }
-
+    Boolean once = true;
     private void seguimientoUsuarios(String id){
+
         String idUser = mAuth.getCurrentUser().getUid();
         reference = database.getReference("/encuentros/" + id);
         DatabaseReference partReference = reference.child("participantes");
+
+
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 System.out.println(snapshot.getValue());
                 Encuentro encuentro = snapshot.getValue(Encuentro.class);
                 ArrayList<Participante> participantes = encuentro.getParticipantes();
-                MapMarker pencuentro = new MapMarker( new GeoCoordinates(encuentro.getLatPuntoEncuentro(),encuentro.getLngPuntoEncuentro()),mapImages.get(6));
-                MapMarker pfinal = new MapMarker( new GeoCoordinates(encuentro.getLatPuntoFinal(),encuentro.getLngPuntoFinal()),mapImages.get(5));
-                mapView.getMapScene().addMapMarker(pencuentro);
-                mapView.getMapScene().addMapMarker(pfinal);
+                if(once){
+                    MapMarker pencuentro = new MapMarker( new GeoCoordinates(encuentro.getLatPuntoEncuentro(),encuentro.getLngPuntoEncuentro()),mapImages.get(6));
+                    MapMarker pfinal = new MapMarker( new GeoCoordinates(encuentro.getLatPuntoFinal(),encuentro.getLngPuntoFinal()),mapImages.get(6));
+                    mapView.getMapScene().addMapMarker(pencuentro);
+                    mapView.getMapScene().addMapMarker(pfinal);
+
+                    TextView textView = new TextView(TrackingActivity.this);
+                    textView.setTextColor(getResources().getColor(R.color.white));
+                    textView.setText("inicio");
+
+                    LinearLayout linearLayout = new LinearLayout(TrackingActivity.this);
+                    linearLayout.setBackgroundResource(R.color.teal_700);
+                    linearLayout.setPadding(10, 10, 10, 10);
+                    linearLayout.addView(textView);
+                    mapView.pinView(linearLayout,pencuentro.getCoordinates());
+
+                    mapView.getMapScene().addMapMarker(pfinal);
+
+
+
+                    once = false;
+                }
+
                 participantes.removeIf(n -> (n.getId().equals(idUser)));
 
                 for(Participante p : participantes){
