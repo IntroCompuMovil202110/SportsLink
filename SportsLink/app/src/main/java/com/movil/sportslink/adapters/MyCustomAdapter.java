@@ -62,7 +62,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         //Handle buttons and add onClickListeners
 
         Button addBtn = (Button) view.findViewById(R.id.verUsuario);
-        Button chatBtn = (Button) view.findViewById(R.id.chatUsuario);
+        ImageButton chatBtn = (ImageButton) view.findViewById(R.id.chatUsuario);
         ImageButton perfilBtn = (ImageButton) view.findViewById(R.id.perfilUsuario);
 
         /*addBtn.setOnClickListener(new View.OnClickListener(){

@@ -23,7 +23,11 @@
         android:roundIcon="@mipmap/ic_spl_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsLink">
-        <activity android:name=".controlador.CrearChatGrupalActivity"></activity>
+        <activity android:name=".controlador.CrearEncuentroImagenActivity"></activity>
+        <activity android:name=".controlador.ConversacionesFragment" />
+        <activity android:name=".controlador.ActividadesSegunPreferenciasFragment" />
+        <activity android:name=".controlador.EncuentrosUsuarioFragment" />
+        <activity android:name=".controlador.CrearChatGrupalActivity" />
         <activity android:name=".controlador.ChatsGrupalesActivity" />
         <activity android:name=".controlador.TrackingActivity" />
         <activity android:name=".controlador.CrearRutaEncuentro" />
@@ -47,6 +51,7 @@
         <activity android:name=".controlador.ChatActivity" />
         <activity android:name=".controlador.RutaActivity" />
         <activity android:name=".controlador.RoutasActivity" />
+        <activity android:name=".controlador.Perfil_Propio" />
 
         <service
             android:name=".services.MeetingStartedService"

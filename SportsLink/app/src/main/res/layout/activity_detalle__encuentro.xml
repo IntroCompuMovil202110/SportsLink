@@ -11,28 +11,30 @@
         android:id="@+id/recorridob"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="147dp"
+        android:layout_marginTop="100dp"
+
         android:backgroundTint="@color/backgroundNavigationBarColor"
         android:text="Participantes"
         android:textColor="@color/blackBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+        app:layout_constraintTop_toBottomOf="@+id/imagenEnc" />
 
     <Button
         android:id="@+id/Recorridobutton"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="147dp"
+        android:layout_marginTop="110dp"
+
+        android:backgroundTint="@color/backgroundNavigationBarColor"
         android:text="Recorrido"
+        android:textColor="@color/blackBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/backgroundNavigationBarColor"
-        android:textColor="@color/blackBackground"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/imagenEnc"
         app:layout_constraintVertical_bias="0.263" />
 
     <TextView
@@ -40,9 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre Encuentro"
-        android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.075"
@@ -51,15 +53,15 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="262dp"
-        android:layout_height="182dp"
+        android:id="@+id/imagenEnc"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NombreEncuentrotextView"
         app:layout_constraintVertical_bias="0.068"
-        app:srcCompat="@mipmap/ic_default_image_foreground" />
+        app:srcCompat="@drawable/reyes" />
 
     <TextView
         android:id="@+id/Actividad_encuentrotextView"
@@ -73,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/imagenEnc"
         app:layout_constraintVertical_bias="0.059" />
 
     <TextView
@@ -81,9 +83,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha"
+        android:textColor="@color/backgroundNavigationBarColor"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/backgroundNavigationBarColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
@@ -92,17 +94,43 @@
         app:layout_constraintVertical_bias="0.043" />
 
     <Button
-        android:id="@+id/rutaaEncuentrobutton"
-        android:layout_width="220dp"
+        android:id="@+id/unirse"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="147dp"
-        android:text="Ruta a Encuentro"
+
+        android:backgroundTint="#009688"
+        android:onClick="agregarUsuarioParticipante"
+        android:text="Unirse"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/imagenEnc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/NombreEncuentrotextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/biniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="iniciarEncuentro"
+        android:text="Iniciar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Recorridobutton" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blackBackground2"
+        app:itemIconSize="@dimen/_30dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/backgroundNavigationBarColor"
-        android:textColor="@color/blackBackground"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        app:layout_constraintVertical_bias="0.031" />
+        app:menu="@menu/navigation_items"
+        tools:layout_conversion_absoluteHeight="56dp"
+        tools:layout_conversion_absoluteWidth="411dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

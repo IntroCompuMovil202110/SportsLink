@@ -3,14 +3,19 @@ package com.movil.sportslink.controlador;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.here.sdk.core.Anchor2D;
+import com.here.sdk.core.GeoCoordinates;
 import com.here.sdk.core.errors.InstantiationErrorException;
 import com.here.sdk.gestures.GestureState;
 import com.here.sdk.mapview.MapImage;
@@ -22,6 +27,8 @@ import com.movil.sportslink.R;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+
 import com.here.sdk.mapview.MapError;
 import com.here.sdk.mapview.MapScene;
 import com.here.sdk.mapview.MapScheme;
@@ -30,11 +37,24 @@ import com.here.sdk.mapview.MapView;
 
 import com.movil.sportslink.infrastructure.MapMarkerExec;
 import com.movil.sportslink.infrastructure.PermissionsRequestor;
+import com.movil.sportslink.modelo.LocationPermissionsRequestor;
+import com.movil.sportslink.modelo.PlatformPositioningProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CrearRutaEncuentro extends AppCompatActivity {
+
+    private String locationPerm = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final int LOCATION_PERMISSION_ID=1;
+    private boolean locationEnable=false;
+
+    private android.location.Location myLocation;
+    private PlatformPositioningProvider platformPositioningProvider = null;
+    private MapImage myMapImage;
+    private MapMarker myMarker=null;
+    //private Button centerButton;
+
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String PATH_MEETINGS = "encuentros/";
@@ -63,6 +83,8 @@ public class CrearRutaEncuentro extends AppCompatActivity {
         waypointMarkers = new ArrayList<>();
         context = getApplicationContext();
 
+
+
         mAuth = FirebaseAuth.getInstance();
         database= FirebaseDatabase.getInstance();
 
@@ -75,6 +97,45 @@ public class CrearRutaEncuentro extends AppCompatActivity {
         }
 
         setLongPressGestureHandler();
+
+
+        //Map
+        initMyLocation();
+    }
+
+    private void initMyLocation() {
+        if(locationEnable)
+            return;
+        if(ContextCompat.checkSelfPermission(this, locationPerm)== PackageManager.PERMISSION_GRANTED) {
+            locationEnable=true;
+            myMapImage= MapImageFactory.fromResource(this.getResources(),R.drawable.poi);
+            platformPositioningProvider = new PlatformPositioningProvider(CrearRutaEncuentro.this);
+            //centerButton.setVisibility(View.VISIBLE);
+            starLocating();
+        }
+        loadMapScene();
+    }
+
+    private void starLocating() {
+        if(platformPositioningProvider==null){
+            //TODO: Handle error
+            return;
+        }
+        platformPositioningProvider.startLocating(new PlatformPositioningProvider.PlatformLocationListener() {
+            @Override
+            public void onLocationUpdated(android.location.Location location) {
+                myLocation=location;
+
+                if(myMarker==null){
+                    Anchor2D anchor2D=new Anchor2D(0.5f,1.0f);
+                    myMarker=new MapMarker(new GeoCoordinates(location.getLatitude(),location.getLongitude()),myMapImage,anchor2D);
+                    mapView.getMapScene().addMapMarker(myMarker);
+                    mapView.getCamera().lookAt(new GeoCoordinates(location.getLatitude(),location.getLongitude()),2500);
+                }else{
+                    myMarker.setCoordinates(new GeoCoordinates(location.getLatitude(),location.getLongitude()));
+                }
+            }
+        });
     }
 
     private void handleAndroidPermissions() {
@@ -115,7 +176,7 @@ public class CrearRutaEncuentro extends AppCompatActivity {
     private void setLongPressGestureHandler(){
         mapView.getGestures().setLongPressListener((((gestureState, touchPoint) -> {
             if(gestureState == GestureState.BEGIN){
-                MapImage waypointImage = MapImageFactory.fromResource(context.getResources(),R.drawable.poi);
+                MapImage waypointImage = MapImageFactory.fromResource(context.getResources(),R.drawable.poi3);
                 MapMarker waypointMarker = new MapMarker(mapView.viewToGeoCoordinates(touchPoint),waypointImage);
                 mapView.getMapScene().addMapMarker(waypointMarker);
                 if(waypointMarkers.size() != 2){
@@ -162,7 +223,7 @@ public class CrearRutaEncuentro extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(getBaseContext(), EncuentroActivity.class);
+        Intent intent = new Intent(getBaseContext(), Detalle_EncuentroActivity.class);
         intent.putExtra("ID",id);
         startActivity(intent);
     }

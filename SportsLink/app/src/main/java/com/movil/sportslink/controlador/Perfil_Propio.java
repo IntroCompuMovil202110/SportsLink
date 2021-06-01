@@ -1,6 +1,8 @@
 package com.movil.sportslink.controlador;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -12,16 +14,21 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.movil.sportslink.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -40,7 +47,7 @@ import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
-public class Perfil_Propio extends Fragment {
+public class Perfil_Propio extends AppCompatActivity {
     Button editarPerfil;
 
 
@@ -58,25 +65,54 @@ public class Perfil_Propio extends Fragment {
     Button bCamara;
     Button continuar;
     String currentPhotoPath;
+    private Toolbar toolbar;
 
-    @Override
+    private BottomNavigationView bottomNavigationView;
+
+    /*@Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_perfil_propio, container, false);
-    }
-
+    }*/
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_perfil_propio);
+
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(this, ActividadesSegunPreferenciasFragment.class);
+                startActivity(intent);
+                /*fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, new ActividadesSegunPreferenciasFragment(), null)
+                        .setReorderingAllowed(true).addToBackStack(null).commit();*/
+            } else if (itemId == R.id.navigation_search) {
+                Intent intent = new Intent(this, EncuentrosUsuarioFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_chat) {
+                Intent intent = new Intent(this, ConversacionesFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_profile) {
+
+                Intent intent = new Intent(this, Perfil_Propio.class);
+                startActivity(intent);
+            }
+            return true;
+        });
+        bottomNavigationView.setItemIconTintList(null);
+
         //editarPerfil = view.findViewById(R.id.buttonEditarPerfil);
-        Bundle bundle= getActivity().getIntent().getBundleExtra("bundle");
+        Bundle bundle= getIntent().getBundleExtra("bundle");
 
-        image = view.findViewById(R.id.image);
-        nombre = view.findViewById(R.id.textViewNombreUsuario);
-        desc = view.findViewById(R.id.descripcion);
+        image = findViewById(R.id.image);
+        nombre = findViewById(R.id.textViewNombreUsuario);
+        desc = findViewById(R.id.descripcion);
 
-        selectImagen = view.findViewById(R.id.select);
-        bCamara = view.findViewById(R.id.camara);
+        selectImagen = findViewById(R.id.select);
+        bCamara = findViewById(R.id.camara);
 
         /*try{
 
@@ -92,7 +128,7 @@ public class Perfil_Propio extends Fragment {
             usuarioPerfil = null;
         }*/
 
-        cerrarSesion = view.findViewById(R.id.cerrarSesion);
+        cerrarSesion = findViewById(R.id.cerrarSesion);
         mAuth = FirebaseAuth.getInstance();
         String email = mAuth.getCurrentUser().getEmail();
         nombre.setText(email);
@@ -107,7 +143,7 @@ public class Perfil_Propio extends Fragment {
         });
 
         selectImagen.setOnClickListener(v -> {
-            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
                 seleccionarImagen();
             } else {
@@ -117,7 +153,7 @@ public class Perfil_Propio extends Fragment {
         });
 
         bCamara.setOnClickListener(v -> {
-            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED) {
                 tomarFoto();
             } else {
@@ -126,8 +162,39 @@ public class Perfil_Propio extends Fragment {
 
         });
 
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        System.out.println("DOES THIS FUCKING WORKS?");
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(Perfil_Propio.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        }else if(itemClicked == R.id.crearEncuentroButton){
+            Intent intent = new Intent(this, CrearEncuentro1Activity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+  /*  @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }*/
 
 
 
@@ -165,7 +232,7 @@ public class Perfil_Propio extends Fragment {
                 if(resultCode== RESULT_OK){
                     try {
                         final Uri imageUri= data.getData();
-                        final InputStream imageStream= getContext().getContentResolver().openInputStream(imageUri);
+                        final InputStream imageStream= this.getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage= BitmapFactory.decodeStream(imageStream);
                         image.setImageBitmap(selectedImage);
                         //terminar();
@@ -196,7 +263,7 @@ public class Perfil_Propio extends Fragment {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -213,33 +280,33 @@ public class Perfil_Propio extends Fragment {
         File f = new File(currentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
-        getContext().sendBroadcast(mediaScanIntent);
+        this.sendBroadcast(mediaScanIntent);
     }
 
 
 
     private void permisos(){
 
-        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
             // Shouldweshow anexplanation?
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),Manifest.permission.READ_EXTERNAL_STORAGE)){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)){
                 // Show anexpanationto theuser*asynchronously*
             }
             // requestthe
-            ActivityCompat.requestPermissions(getActivity(),
+            ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},IMAGE_PICKER_REQUEST);
             // MY_PERMISSIONS_REQUEST_READ_CONTACTS es una// constante definida en la aplicación, se debe usar// en el callbackpara identificar el permiso }
         }
     }
 
     private void permisosCamera(){
-        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             // Shouldweshow anexplanation?
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),Manifest.permission.CAMERA)){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CAMERA)){
                 // Show anexpanationto theuser*asynchronously*
             }
             // requestthe
-            ActivityCompat.requestPermissions(getActivity(),
+            ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},REQUEST_IMAGE_CAPTURE);
             // MY_PERMISSIONS_REQUEST_READ_CONTACTS es una// constante definida en la aplicación, se debe usar// en el callbackpara identificar el permiso }
         }
@@ -287,7 +354,7 @@ public class Perfil_Propio extends Fragment {
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                Uri photoURI = FileProvider.getUriForFile(getContext(),
+                Uri photoURI = FileProvider.getUriForFile(this,
                         "com.movil.sportslink.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -301,6 +368,7 @@ public class Perfil_Propio extends Fragment {
     }
 
     private void seleccionarImagen() {
+
         Intent pickImage= new Intent(Intent.ACTION_PICK);
         pickImage.setType("image/*");
         startActivityForResult(pickImage, IMAGE_PICKER_REQUEST);

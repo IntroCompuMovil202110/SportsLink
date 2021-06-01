@@ -26,8 +26,8 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="20dp"
           android:layout_marginTop="0dp"
-          android:text="Crear encuentro parte 1"
-          android:textColor="@color/white"
+          android:text="Crea tu encuentro"
+          android:textColor="@color/redText"
           android:textSize="30sp"
           android:textStyle="bold" />
 
@@ -39,17 +39,18 @@
           android:layout_marginStart="20dp"
           android:layout_marginTop="50dp"
           android:text="Actividad"
-          android:textColor="@color/grayButtonBackground"
+          android:textColor="@color/white"
           android:textSize="20sp" />
 
       <Spinner
           android:id="@+id/crearEncuentro1actividadSpinner"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="20dp"
           android:layout_below="@id/crearEncuentro1actividadTextView"
           android:layout_marginStart="20dp"
           android:layout_marginTop="20dp"
           android:layout_marginEnd="20dp"
+          android:backgroundTint="@color/cardview_light_background"
           android:background="@color/white" />
 
       <TextView
@@ -58,9 +59,9 @@
           android:layout_height="wrap_content"
           android:layout_below="@id/crearEncuentro1actividadSpinner"
           android:layout_marginStart="20dp"
-          android:layout_marginTop="100dp"
+          android:layout_marginTop="20dp"
           android:text="Nombre"
-          android:textColor="@color/grayButtonBackground"
+          android:textColor="@color/white"
           android:textSize="20sp" />
 
       <EditText
@@ -72,7 +73,7 @@
           android:layout_marginEnd="20dp"
           android:backgroundTint="@color/white"
           android:inputType="text"
-          android:textColor="@color/grayButtonBackground" />
+          android:textColor="@color/white" />
 
       <TextView
           android:id="@+id/crearEncuentro1descripcionTextView"
@@ -93,13 +94,15 @@
           android:layout_marginStart="20dp"
           android:layout_marginTop="20dp"
           android:layout_marginEnd="20dp"
+
           android:background="@drawable/white_roundcorner"
-          android:backgroundTint="@color/white"
+
           android:hint="Descripción"
           android:importantForAutofill="no"
           android:inputType="textMultiLine"
-          android:textColor="@color/black"
-          android:textColorHint="@color/black" />
+          android:textColor="@color/white"
+          android:textColorHint="@color/white"
+          android:paddingLeft="10dp"/>
 
       <TextView
           android:id="@+id/crearEncuentro2fechaTextViewTitulo"
@@ -119,11 +122,13 @@
 
           android:layout_below="@+id/crearEncuentro2fechaTextViewTitulo"
           android:layout_marginTop="10dp"
+          android:layout_marginRight="20dp"
           android:clickable="true"
           android:focusable="false"
           android:hint="Introduce una fecha"
           android:inputType="date"
           android:maxLines="1"
+          android:layout_marginStart="20dp"
           android:textColor="@color/black"
           android:background="@color/white"/>
 
@@ -146,10 +151,12 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_below="@+id/crearEncuentro2horaTextView"
-          android:layout_marginStart="0dp"
+          android:layout_marginStart="20dp"
+          android:layout_marginEnd="20dp"
           android:layout_marginTop="10dp"
           android:layout_marginBottom="20dp"
           android:background="@color/white"
+
           android:timePickerMode="spinner" />
 
       <Button

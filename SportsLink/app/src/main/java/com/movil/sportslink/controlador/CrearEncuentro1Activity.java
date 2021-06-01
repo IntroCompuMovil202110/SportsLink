@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -32,6 +34,7 @@ import com.movil.sportslink.modelo.Actividad;
 import com.movil.sportslink.modelo.Encuentro;
 import com.movil.sportslink.modelo.Participante;
 import com.movil.sportslink.modelo.Ubicacion;
+import com.movil.sportslink.services.RecommendationService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -110,7 +113,7 @@ public class CrearEncuentro1Activity extends AppCompatActivity {
     }
 
     private void updateUI(String id) {
-        Intent intent = new Intent(getBaseContext(), CrearRutaEncuentro.class);
+        Intent intent = new Intent(getBaseContext(), CrearEncuentroImagenActivity.class);
         intent.putExtra("ID", id);
         startActivity(intent);
     }
@@ -163,6 +166,29 @@ public class CrearEncuentro1Activity extends AppCompatActivity {
         DatabaseReference referenceEstadoEventos = database.getReference("estadoEventos/");
         referenceEstadoEventos.child(encuentroActual.getId()).setValue(false);
         return postsRefEnc.getKey();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(CrearEncuentro1Activity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else if(itemClicked == R.id.crearEncuentroButton){
+            Intent intent = new Intent(this, CrearEncuentro1Activity.class);
+            startActivity(intent);
+        }else if(itemClicked == R.id.sugg){
+            RecommendationService.consumeRESTVolley(this);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void ubicacionUsuario(String id){

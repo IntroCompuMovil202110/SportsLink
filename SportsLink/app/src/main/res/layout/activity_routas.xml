@@ -6,19 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".controlador.RoutasActivity">
 
-    <com.here.sdk.mapviewlite.MapViewLite
-        android:id="@+id/map_view"
+    <com.here.sdk.mapview.MapView
+        android:id="@+id/map_view_ruta"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="Volver"
-            android:onClick="volverButtonClicked"/>
-    </com.here.sdk.mapviewlite.MapViewLite>
+
+    </com.here.sdk.mapview.MapView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/blackBackground2"
+        app:itemIconSize="@dimen/_30dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/navigation_items" />
 
     <LinearLayout
         app:layout_constraintTop_toTopOf="parent"

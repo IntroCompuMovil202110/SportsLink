@@ -28,30 +28,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fragmentManager = getSupportFragmentManager();
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
                 consumeRESTVolley();
-                fragmentManager.beginTransaction()
+                Intent intent = new Intent(this, ActividadesSegunPreferenciasFragment.class);
+                startActivity(intent);
+                /*fragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainer, new ActividadesSegunPreferenciasFragment(), null)
-                        .setReorderingAllowed(true).addToBackStack(null).commit();
+                        .setReorderingAllowed(true).addToBackStack(null).commit();*/
             } else if (itemId == R.id.navigation_search) {
                 consumeRESTVolley();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, new EncuentrosUsuarioFragment(), null)
-                        .setReorderingAllowed(true).addToBackStack(null).commit();
+                Intent intent = new Intent(this, EncuentrosUsuarioFragment.class);
+                startActivity(intent);
             } else if (itemId == R.id.navigation_chat) {
                 consumeRESTVolley();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, new ConversacionesFragment(), null)
-                        .setReorderingAllowed(true).addToBackStack(null).commit();
+                Intent intent = new Intent(this, ConversacionesFragment.class);
+                startActivity(intent);
             } else if (itemId == R.id.navigation_profile) {
                 consumeRESTVolley();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, new Perfil_Propio(), null)
-                        .setReorderingAllowed(true).addToBackStack(null).commit();
+
+                Intent intent = new Intent(this, Perfil_Propio.class);
+                startActivity(intent);
             }
             return true;
         });
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://www.boredapi.com/api/";
         //String path = "currency/cop";
-        String query = "activity?type=recreational";
+        String query = "activity?type=social";
         StringRequest req = new StringRequest(Request.Method.GET, url  + query,
                 new Response.Listener() {
                     public void onResponse(Object response) {

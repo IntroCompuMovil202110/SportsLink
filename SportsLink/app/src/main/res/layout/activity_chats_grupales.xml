@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/blackBackground"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".controlador.ChatsGrupalesActivity">
 
     <RelativeLayout
@@ -32,6 +33,20 @@
     <ListView
         android:id="@+id/chatsGrupalesListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="603dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:background="@color/blackBackground2"
+        app:itemIconSize="@dimen/_30dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation_items"
+        tools:layout_conversion_absoluteHeight="56dp"
+        tools:layout_conversion_absoluteWidth="411dp" />
 
 </LinearLayout>

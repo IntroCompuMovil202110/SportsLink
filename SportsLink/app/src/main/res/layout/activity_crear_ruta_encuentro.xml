@@ -10,6 +10,8 @@
         android:id="@+id/map_view_ruta"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
     </com.here.sdk.mapview.MapView>
 
     <LinearLayout

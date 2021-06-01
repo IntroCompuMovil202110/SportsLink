@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +41,7 @@ import com.movil.sportslink.infrastructure.PersistidorEncuentro;
 import com.movil.sportslink.infrastructure.PersistidorUsuarios;
 import com.movil.sportslink.modelo.Encuentro;
 import com.movil.sportslink.modelo.Usuario;
+import com.movil.sportslink.services.RecommendationService;
 
 import java.lang.reflect.Array;
 import java.text.ParseException;
@@ -64,6 +68,32 @@ public class Buscar_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_);
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(this, ActividadesSegunPreferenciasFragment.class);
+                startActivity(intent);
+                /*fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, new ActividadesSegunPreferenciasFragment(), null)
+                        .setReorderingAllowed(true).addToBackStack(null).commit();*/
+            } else if (itemId == R.id.navigation_search) {
+                Intent intent = new Intent(this, EncuentrosUsuarioFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_chat) {
+                Intent intent = new Intent(this, ConversacionesFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_profile) {
+
+                Intent intent = new Intent(this, Perfil_Propio.class);
+                startActivity(intent);
+            }
+            return true;
+        });
+        bottomNavigationView.setItemIconTintList(null);
+
         boton = findViewById(R.id.button);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -71,6 +101,29 @@ public class Buscar_Activity extends AppCompatActivity {
         finalEncuentros = new ArrayList<>();
         finalUsuarios = new ArrayList<>();
         buscarEncuentros();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(Buscar_Activity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else if(itemClicked == R.id.crearEncuentroButton){
+            Intent intent = new Intent(this, CrearEncuentro1Activity.class);
+            startActivity(intent);
+        }else if(itemClicked == R.id.sugg){
+            RecommendationService.consumeRESTVolley(this);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void inflarEncuentros() {

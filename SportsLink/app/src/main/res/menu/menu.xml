@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/sugg"
+        android:icon="@drawable/ic_suggestion"
+        android:title="Recomendacion"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/crearEncuentroButton"
+        android:icon="@drawable/ic_plus"
+        android:title="Contacts"
+        app:showAsAction="always"/>
+
+
+
+
+    <item
+        android:id="@+id/menuLogOut"
+        android:icon="@drawable/ic_logout"
+        android:title="Log Out"
+        app:showAsAction="ifRoom"/>
+</menu>

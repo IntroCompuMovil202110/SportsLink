@@ -3,7 +3,7 @@ package com.movil.sportslink.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Encuentro implements Serializable {
+public class Encuentro{
 
     private String id;
     private String nombre;

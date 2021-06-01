@@ -3,6 +3,7 @@ package com.movil.sportslink.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.movil.sportslink.R;
+import com.movil.sportslink.controlador.Detalle_EncuentroActivity;
 import com.movil.sportslink.controlador.EncuentroActivity;
+import com.movil.sportslink.controlador.RoutasActivity;
 import com.movil.sportslink.modelo.Encuentro;
 
 import java.util.ArrayList;
@@ -60,14 +63,14 @@ public class EncuentrosAdapter  extends BaseAdapter implements ListAdapter {
         TextView actividad = view.findViewById(R.id.tipo_deportetextView);
         actividad.setText(listaEncuentros.get(position).getActividad());
         //ImageView imagen = view.findViewById(R.id.imageView5);*/
-
+        System.out.println("Se añadio " + nombreEncuentro.getText());
         Button buver = view.findViewById(R.id.buver);
         Button buruta = view.findViewById(R.id.buruta);
 
         buver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(parent.getContext(),EncuentroActivity.class);
+                Intent intent = new Intent(parent.getContext(), Detalle_EncuentroActivity.class);
                 intent.putExtra("ID",listaEncuentros.get(position).getId());
                 parent.getContext().startActivity(intent);
             }
@@ -76,8 +79,16 @@ public class EncuentrosAdapter  extends BaseAdapter implements ListAdapter {
         buruta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(parent.getContext(),EncuentroActivity.class);
-                intent.putExtra("ID",listaEncuentros.get(position));
+                Encuentro e = listaEncuentros.get(position);
+                Bundle bundlen = new Bundle();
+                bundlen.putDouble("LATINICIO",e.getLatPuntoEncuentro());
+                bundlen.putDouble("LNGINICIO", e.getLngPuntoFinal());
+                bundlen.putDouble("LATFINAL",e.getLatPuntoFinal());
+                bundlen.putDouble("LNGFINAL",e.getLngPuntoFinal());
+
+                Intent intent = new Intent(parent.getContext(),RoutasActivity.class);
+                intent.putExtras(bundlen);
+                intent.putExtra("ID",e.getId());
                 parent.getContext().startActivity(intent);
             }
         });

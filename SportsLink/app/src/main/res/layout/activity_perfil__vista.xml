@@ -80,13 +80,28 @@
         android:id="@+id/buttonAñadirContacto"
         android:layout_width="189dp"
         android:layout_height="50dp"
+        android:layout_marginTop="172dp"
+        android:background="@drawable/roundcorner"
         android:backgroundTint="#009688"
         android:text="Añadir contacto"
+
         android:textColor="@color/white"
-        android:background="@drawable/roundcorner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.234"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blackBackground2"
+        app:itemIconSize="@dimen/_30dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.95" />
+        app:menu="@menu/navigation_items"
+        tools:layout_conversion_absoluteHeight="56dp"
+        tools:layout_conversion_absoluteWidth="411dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

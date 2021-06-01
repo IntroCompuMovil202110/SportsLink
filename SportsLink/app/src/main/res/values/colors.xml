@@ -15,12 +15,13 @@
 
     <color name="blackBackground">#17212d</color>
     <color name="blackBackground2">#1b2836</color>
+    <color name="blackBackground3">#243447</color>
 
-    <color name="redText">#A64852</color>
+    <color name="redText">#ff5252</color>
     <color name="signUpColor">#B56546</color>
     <color name="backgroundNavigationBarColor" >#FF00D9C5</color>
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryL">#3F51B5</color>
+    <color name="colorPrimaryDarkL">#303F9F</color>
+    <color name="colorAccent">#da4748</color>
 </resources>

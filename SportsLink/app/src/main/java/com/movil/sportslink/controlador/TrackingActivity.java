@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.content.Intent;
@@ -14,13 +15,16 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,6 +64,7 @@ import com.movil.sportslink.modelo.LocationPermissionsRequestor;
 import com.movil.sportslink.modelo.Participante;
 import com.movil.sportslink.modelo.PlatformPositioningProvider;
 import com.movil.sportslink.modelo.Usuario;
+import com.movil.sportslink.services.RecommendationService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,10 +117,40 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
     TextView temperatura;
     TextView humedad;
 
+    private FragmentManager fragmentManager;
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(this, ActividadesSegunPreferenciasFragment.class);
+                startActivity(intent);
+                /*fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, new ActividadesSegunPreferenciasFragment(), null)
+                        .setReorderingAllowed(true).addToBackStack(null).commit();*/
+            } else if (itemId == R.id.navigation_search) {
+                Intent intent = new Intent(this, EncuentrosUsuarioFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_chat) {
+                Intent intent = new Intent(this, ConversacionesFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_profile) {
+
+                Intent intent = new Intent(this, Perfil_Propio.class);
+                startActivity(intent);
+            }
+            return true;
+        });
+        bottomNavigationView.setItemIconTintList(null);
+        //bottomNavigationView.setSelectedItemId(R.id.hybrid);
+
+
         temperatura = findViewById(R.id.temperatura);
         humedad = findViewById(R.id.humedad);
 
@@ -202,6 +237,29 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
         }else{
             initMyLocation();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(TrackingActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else if(itemClicked == R.id.crearEncuentroButton){
+            Intent intent = new Intent(this, CrearEncuentro1Activity.class);
+            startActivity(intent);
+        }else if(itemClicked == R.id.sugg){
+            RecommendationService.consumeRESTVolley(this);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -295,10 +353,8 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
                 Metadata metadata = topmostMapMarker.getMetadata();
                 if (metadata != null) {
                     String message = "No message found.";
-                    String string = metadata.getString("Distancia");
-                    if (string != null) {
-                        message = string;
-                    }
+
+
                     Toast.makeText(TrackingActivity.this, message, Toast.LENGTH_SHORT).show();
                 }
                 if(locationEnable){
@@ -504,7 +560,10 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
                 System.out.println(snapshot.getValue());
                 Encuentro encuentro = snapshot.getValue(Encuentro.class);
                 ArrayList<Participante> participantes = encuentro.getParticipantes();
-
+                MapMarker pencuentro = new MapMarker( new GeoCoordinates(encuentro.getLatPuntoEncuentro(),encuentro.getLngPuntoEncuentro()),mapImages.get(6));
+                MapMarker pfinal = new MapMarker( new GeoCoordinates(encuentro.getLatPuntoFinal(),encuentro.getLngPuntoFinal()),mapImages.get(5));
+                mapView.getMapScene().addMapMarker(pencuentro);
+                mapView.getMapScene().addMapMarker(pfinal);
                 participantes.removeIf(n -> (n.getId().equals(idUser)));
 
                 for(Participante p : participantes){
@@ -564,7 +623,7 @@ public class TrackingActivity extends AppCompatActivity implements SensorEventLi
                                 nuevo = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),mapImages.get(usersMarkers.size()-1));
 
                             }else{
-                                nuevo = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),mapImages.get(6));
+                                nuevo = new MapMarker(new GeoCoordinates(p.getLatitude(), p.getLongitude()),mapImages.get(4));
                             }
 
                             nuevo.setMetadata(metadata);

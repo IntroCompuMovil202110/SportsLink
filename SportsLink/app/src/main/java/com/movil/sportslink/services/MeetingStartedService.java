@@ -24,11 +24,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.movil.sportslink.R;
+import com.movil.sportslink.adapters.MiEncuentroAdapter;
+import com.movil.sportslink.controlador.EncuentrosUsuarioFragment;
 import com.movil.sportslink.controlador.MainActivity;
+import com.movil.sportslink.controlador.TrackingActivity;
 import com.movil.sportslink.modelo.Encuentro;
+import com.movil.sportslink.modelo.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.movil.sportslink.controlador.SignUpActivity.PATH_USERS;
 
 
 public class MeetingStartedService extends JobIntentService {
@@ -41,10 +47,10 @@ public class MeetingStartedService extends JobIntentService {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
     ValueEventListener val;
-
+    ArrayList<Encuentro> encuentrosUsuario;
 
     ArrayList<Encuentro> encuentros;
-
+    ArrayList<String> codigoEnc;
 
 
     public static void enqueueWork(Context context, Intent intent){
@@ -60,32 +66,52 @@ public class MeetingStartedService extends JobIntentService {
 
         encuentros = new ArrayList<>();
         //Boolean estado = false;
-        myRef = database.getReference("estadoEventos/");
 
-        myRef.addChildEventListener(new ChildEventListener() {
+
+        myRef = database.getReference(PATH_USERS + user.getUid());
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            }
+                Usuario usuario = snapshot.getValue(Usuario.class);
+                codigoEnc = usuario.getEncuentros();
+                DatabaseReference myEstadoRef = database.getReference("estadoEventos/");
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String e = snapshot.getValue().toString();
-                Boolean estado = snapshot.getValue(Boolean.class);
-                System.out.println(e);
-                if(estado){
-                    buildAndShowNotification(e,"OKI");
-                }
+                myEstadoRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-            }
+                    }
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-            }
+                        String e = snapshot.getKey();
+                        System.out.println("UN ENCUENTRO HA INICIADO " + e);
+                        Boolean estado = snapshot.getValue(Boolean.class);
+                        System.out.println(e);
+                        if(estado && codigoEnc.contains(e)){
+                            buildAndShowNotification(e,"OKI");
+                        }
 
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
             }
 
@@ -98,7 +124,16 @@ public class MeetingStartedService extends JobIntentService {
 
 
 
+
+
+
     }
+
+    private void obtenerEncuentrosUsuario(){
+
+
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void createNotificationChannel() {
@@ -127,17 +162,17 @@ public class MeetingStartedService extends JobIntentService {
 
 
         NotificationCompat.Builder mBuilder= new NotificationCompat.Builder(this, CHANNEL_ID);
-        mBuilder.setSmallIcon(R.drawable.home_icon);
-        mBuilder.setContentTitle("Nuevo usuario disponible!");
-        mBuilder.setContentText(nombre + " ahora esta disponible, mira su ubicación");
+        mBuilder.setSmallIcon(R.drawable.here_car);
+        mBuilder.setContentTitle("El encuentreo " + nombre + " ha iniciado!");
+        mBuilder.setContentText("Sigue a sus participantes!");
         mBuilder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        //Intent intent = new Intent(this, Seguimiento.class);
-        //intent.putExtra("ID",id);
+        Intent intent = new Intent(this, TrackingActivity.class);
+        intent.putExtra("ID",id);
         System.out.println("NOTICIACION A "+ id);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        //PendingIntent pendingIntent= PendingIntent.getActivity(this, 0, intent, 0);
-        //mBuilder.setContentIntent(pendingIntent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent= PendingIntent.getActivity(this, 0, intent, 0);
+        mBuilder.setContentIntent(pendingIntent);
         mBuilder.setAutoCancel(true);
 
         int notificationId= 001;
@@ -147,6 +182,9 @@ public class MeetingStartedService extends JobIntentService {
 
     }
 
+    private interface FirebaseCallBack{
+        void onCallBack(List<Encuentro> encuentros);
+    }
 
 
 

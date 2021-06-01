@@ -1,9 +1,12 @@
 package com.movil.sportslink.controlador;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,8 +17,11 @@ import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,11 +33,12 @@ import com.movil.sportslink.adapters.EncuentrosAdapter;
 import com.movil.sportslink.adapters.MiEncuentroAdapter;
 import com.movil.sportslink.infrastructure.PersistidorEncuentro;
 import com.movil.sportslink.modelo.Encuentro;
+import com.movil.sportslink.services.RecommendationService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActividadesSegunPreferenciasFragment extends Fragment {
+public class ActividadesSegunPreferenciasFragment extends AppCompatActivity {
 
     ListView viewl;
     ArrayList<Encuentro> finalEncuentros;
@@ -39,18 +46,41 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference myRef;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_actividades_segun_preferencias, container, false);
-    }
+    private FragmentManager fragmentManager;
+
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Button crearEncuentro = view.findViewById(R.id.crearButton);
-        SearchView searchView= view.findViewById(R.id.actividadesSegunPreferenciasSearchView);
-        viewl = view.findViewById(R.id.listaInicio);
+    protected void onCreate(    Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_actividades_segun_preferencias);
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home) {
+                Intent intent = new Intent(this, ActividadesSegunPreferenciasFragment.class);
+                startActivity(intent);
+                /*fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, new ActividadesSegunPreferenciasFragment(), null)
+                        .setReorderingAllowed(true).addToBackStack(null).commit();*/
+            } else if (itemId == R.id.navigation_search) {
+                Intent intent = new Intent(this, EncuentrosUsuarioFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_chat) {
+                Intent intent = new Intent(this, ConversacionesFragment.class);
+                startActivity(intent);
+            } else if (itemId == R.id.navigation_profile) {
+
+                Intent intent = new Intent(this, Perfil_Propio.class);
+                startActivity(intent);
+            }
+            return true;
+        });
+        bottomNavigationView.setItemIconTintList(null);
+
+        //Button crearEncuentro = findViewById(R.id.crearButton);
+        SearchView searchView= findViewById(R.id.actividadesSegunPreferenciasSearchView);
+        viewl = findViewById(R.id.listaInicio);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -59,7 +89,7 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
 
 
 
-        //EncuentrosAdapter encuentrosAdapter = new EncuentrosAdapter(finalEncuentros,getContext());
+        //EncuentrosAdapter encuentrosAdapter = new EncuentrosAdapter(finalEncuentros,this);
 
 
         //handle listview and assign adapter
@@ -68,7 +98,7 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(getContext(), Detalle_EncuentroActivity.class);
+                Intent intent = new Intent(ActividadesSegunPreferenciasFragment.this, Detalle_EncuentroActivity.class);
                 Bundle bundle = new Bundle();
 
                 /*bundle.putString("nombre", finalEncuentros.get(position).getNombre() );
@@ -87,8 +117,8 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
             public void onCallBack(List<Encuentro> encuentros) {
                 if(encuentros != null && !encuentros.isEmpty()){
 
-
-                    EncuentrosAdapter miEncuentroAdapter = new EncuentrosAdapter((ArrayList<Encuentro>) encuentros,getContext());
+                    System.out.println("Preparando adaptador");
+                    EncuentrosAdapter miEncuentroAdapter = new EncuentrosAdapter((ArrayList<Encuentro>) encuentros,ActividadesSegunPreferenciasFragment.this);
                     viewl.setAdapter(miEncuentroAdapter);
                 }
             }
@@ -107,12 +137,11 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
                     }*/
         });
         //viewl.setAdapter(encuentrosAdapter);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Intent intent = new Intent(getContext(), Buscar_Activity.class);
+                Intent intent = new Intent(ActividadesSegunPreferenciasFragment.this, Buscar_Activity.class);
                 intent.putExtra("query",query);
                 startActivity(intent);
                 return false;
@@ -124,20 +153,46 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
             }
         });
 
-
-
         //ImageButton verActividades = view.findViewById(R.id.ButtonVerActividad);
-        crearEncuentro.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), CrearEncuentro1Activity.class);
+        /*crearEncuentro.setOnClickListener(v -> {
+
+            Intent intent = new Intent(this, CrearEncuentro1Activity.class);
             startActivity(intent);
         });
        /* verActividades.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), EncuentroActivity.class);
+            Intent intent = new Intent(this, EncuentroActivity.class);
             startActivity(intent);
         });*/
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.menuLogOut){
+            mAuth.signOut();
+            Intent intent = new Intent(ActividadesSegunPreferenciasFragment.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else if(itemClicked == R.id.crearEncuentroButton){
+            Intent intent = new Intent(this, CrearEncuentro1Activity.class);
+            startActivity(intent);
+        }else if(itemClicked == R.id.sugg){
+            RecommendationService.consumeRESTVolley(this);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
     private void obtenerObjectosEncuentro(FirebaseCallBack firebaseCallBack) {
+        System.out.println("Obtener encuentros");
         myRef = database.getReference("encuentros/");
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -146,6 +201,7 @@ public class ActividadesSegunPreferenciasFragment extends Fragment {
                 for(DataSnapshot s : snapshot.getChildren()){
                     Encuentro enc = s.getValue(Encuentro.class);
                     finalEncuentros.add(enc);
+                    System.out.println("Obtener encuentros " + enc.getId());
                 }
                 firebaseCallBack.onCallBack(finalEncuentros);
             }

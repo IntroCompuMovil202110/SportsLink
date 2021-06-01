@@ -46,4 +46,15 @@
 
     </com.here.sdk.mapview.MapView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/blackBackground2"
+        app:itemIconSize="@dimen/_30dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/navigation_items" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
